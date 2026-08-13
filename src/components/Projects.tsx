@@ -13,22 +13,20 @@ import { cn } from "@/lib/utils";
 
 export function Projects() {
   const [filter, setFilter] = useState<string>("all");
-
-  const categories = Array.from(
-    new Set(projects.map((p) => p.category))
-  );
-
-  const filtered =
-    filter === "all"
-      ? projects
-      : projects.filter((p) => p.category === filter);
-
+  const categories = Array.from(new Set(projects.map((p) => p.category)));
+  const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
   const featured = filtered.filter((p) => p.featured);
   const rest = filtered.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="relative py-20 sm:py-24 lg:py-28">
-      <div className="container-page">
+    <section
+      id="projects"
+      className="relative overflow-hidden bg-bg-secondary/40 py-20 sm:py-24 lg:py-28"
+    >
+      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:52px_52px] opacity-40" />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-24 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-bnb/5 blur-[120px]" />
+
+      <div className="container-page relative">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -37,12 +35,13 @@ export function Projects() {
           className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end"
         >
           <div className="max-w-2xl">
-            <span className="section-eyebrow">
+            <span className="eyebrow">
               <FolderKanban className="h-3.5 w-3.5" />
               Key Projects
             </span>
             <h2 className="section-title">
-              Selected work that shipped to <span className="text-accent">real users</span>
+              Selected work that shipped to{" "}
+              <span className="word-gold">real users</span>
             </h2>
             <p className="section-lead">
               Highlights from AI platforms to enterprise dashboards — click a
@@ -56,10 +55,10 @@ export function Projects() {
                 key={c}
                 onClick={() => setFilter(c)}
                 className={cn(
-                  "rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all",
+                  "relative inline-flex items-center rounded-full border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-200",
                   filter === c
-                    ? "border-ink bg-ink text-white"
-                    : "border-border bg-bg-secondary text-ink-tertiary hover:border-ink/20 hover:text-ink"
+                    ? "border-bnb bg-bnb text-bg-secondary shadow-glow-gold"
+                    : "border-border bg-bg-secondary text-ink-tertiary hover:border-bnb/50 hover:text-bnb"
                 )}
               >
                 {c === "all" ? "All" : c}
@@ -76,71 +75,98 @@ export function Projects() {
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className={cn(
-                  "card card-hover group relative flex flex-col overflow-hidden",
+                  "group card card-hover relative flex flex-col overflow-hidden",
                   i === 0 && "lg:col-span-2"
                 )}
               >
-                <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border-subtle bg-bg-tertiary sm:aspect-[16/8]">
+                {/* Top banner */}
+                <div
+                  className={cn(
+                    "relative w-full overflow-hidden border-b border-border-subtle",
+                    i === 0 ? "aspect-[16/8]" : "aspect-[16/10]"
+                  )}
+                >
+                  {/* Creative gradient banners */}
                   <div
                     aria-hidden
                     className="absolute inset-0"
                     style={{
                       background:
                         i === 0
-                          ? "linear-gradient(135deg, #1e3a8a 0%, #3b82f6 35%, #60a5fa 100%)"
+                          ? `
+                              radial-gradient(120% 100% at 0% 0%, #FCD535 0%, rgba(240,185,11,0.0) 60%),
+                              radial-gradient(100% 120% at 100% 100%, #78350F 0%, rgba(120,53,15,0) 55%),
+                              linear-gradient(135deg, #1C1917 0%, #292524 50%, #0C0A09 100%)
+                            `
                           : i === 1
-                          ? "linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #334155 100%)"
-                          : "linear-gradient(135deg, #78350f 0%, #b45309 45%, #d97706 100%)",
-                      opacity: 0.9,
+                          ? `
+                              radial-gradient(100% 100% at 100% 0%, #F0B90B 0%, rgba(240,185,11,0) 55%),
+                              radial-gradient(80% 80% at 0% 100%, #3B82F6 0%, rgba(59,130,246,0) 60%),
+                              linear-gradient(135deg, #0B0E11 0%, #181A20 60%, #0B0E11 100%)
+                            `
+                          : `
+                              radial-gradient(100% 100% at 50% 0%, rgba(240,185,11,0.6) 0%, rgba(240,185,11,0) 60%),
+                              linear-gradient(135deg, #111827 0%, #1f2937 50%, #0b1220 100%)
+                            `,
                     }}
                   />
+                  <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:36px_36px] opacity-40 mix-blend-overlay" />
                   <div
                     aria-hidden
-                    className="absolute inset-0"
+                    className="absolute inset-0 opacity-50"
                     style={{
                       backgroundImage:
-                        "radial-gradient(600px circle at 20% 20%, rgba(255,255,255,0.15), transparent 50%)",
+                        "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.18), transparent 35%)",
                     }}
                   />
-                  <div className="absolute left-5 top-5 flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm ring-1 ring-white/20">
+
+                  {/* Corner decoration */}
+                  <div className="absolute left-4 top-4 flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-bnb ring-1 ring-bnb/40 backdrop-blur-sm">
                       <Sparkles className="h-3 w-3" />
                       Featured
                     </span>
-                    <span className="inline-flex items-center rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-semibold text-white/95 backdrop-blur-sm ring-1 ring-white/15">
+                    <span className="inline-flex items-center rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-ink ring-1 ring-white/10 backdrop-blur-sm">
                       {p.category}
                     </span>
                   </div>
 
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  {/* Arrow top-right */}
+                  <div className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-xl bg-white/90 text-bg-secondary shadow-card transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-bnb group-hover:shadow-glow-gold sm:h-12 sm:w-12">
+                    <ArrowUpRight className="h-5 w-5" strokeWidth={2.2} />
+                  </div>
+
+                  {/* Bottom titles overlay */}
+                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 sm:pb-7">
                     <div className="flex items-end justify-between gap-4">
                       <div className="min-w-0">
-                        <h3 className="font-display text-2xl font-bold leading-tight text-white sm:text-[28px]">
+                        <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-bnb/90">
+                          case study 0{i + 1}
+                        </div>
+                        <h3 className="mt-1.5 font-display text-2xl font-extrabold leading-tight tracking-tight text-white drop-shadow-md sm:text-3xl">
                           {p.shortTitle}
                         </h3>
-                        <p className="mt-1 text-sm text-white/80">
+                        <p className="mt-1.5 text-sm text-white/80 sm:text-[15px]">
                           {p.subtitle}
                         </p>
-                      </div>
-                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white text-ink shadow-card transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-card-hover sm:h-11 sm:w-11">
-                        <ArrowUpRight className="h-5 w-5" />
                       </div>
                     </div>
                   </div>
                 </div>
 
+                {/* Body */}
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <p className="text-sm leading-relaxed text-ink-tertiary sm:text-[15px]">
                     {p.description}
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2 border-t border-border-subtle pt-5">
                     {p.tags.map((t) => (
-                      <span key={t} className="tag-pill">
+                      <span key={t} className="tag">
                         {t}
                       </span>
                     ))}
@@ -152,11 +178,11 @@ export function Projects() {
         )}
 
         {rest.length > 0 && (
-          <div className="mt-14">
-            <h3 className="flex items-center gap-2 font-display text-sm font-semibold uppercase tracking-[0.14em] text-ink-muted">
-              <span className="inline-block h-px w-6 bg-border-strong" />
+          <div className="mt-16">
+            <h3 className="flex items-center gap-3 font-display text-sm font-bold uppercase tracking-[0.18em] text-ink-muted">
+              <span className="inline-block h-px w-8 bg-gradient-to-r from-transparent to-bnb" />
               More projects
-              <span className="inline-block h-px flex-1 bg-border" />
+              <span className="inline-block h-px flex-1 bg-gradient-to-r from-border to-transparent" />
             </h3>
 
             <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -166,32 +192,44 @@ export function Projects() {
                   href={p.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: i * 0.05 }}
-                  className="card card-hover group flex flex-col p-6 sm:p-6"
+                  className="group card card-hover relative flex flex-col overflow-hidden p-6"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-bg-tertiary text-ink-tertiary transition-colors group-hover:bg-accent-faint group-hover:text-accent">
-                      <FolderKanban className="h-[18px] w-[18px]" />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-bnb/[0.08] blur-2xl transition-transform duration-500 group-hover:scale-150"
+                  />
+
+                  <div className="relative flex items-start justify-between gap-4">
+                    <div className="relative grid h-11 w-11 place-items-center rounded-xl border border-bnb/30 bg-bnb/10 text-bnb transition-all duration-300 group-hover:bg-bnb group-hover:text-bg-secondary group-hover:shadow-glow-gold">
+                      <FolderKanban className="h-[19px] w-[19px]" strokeWidth={2} />
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="chip text-[11px]">{p.category}</span>
-                      <ExternalLink className="h-4 w-4 text-ink-muted transition-colors group-hover:text-accent" />
+                      <ExternalLink className="h-4 w-4 text-ink-muted transition-colors group-hover:text-bnb" />
                     </div>
                   </div>
-                  <h4 className="mt-5 font-display text-base font-semibold text-ink">
-                    {p.shortTitle}
-                  </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-tertiary line-clamp-3">
-                    {p.description}
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-1.5 border-t border-border-subtle pt-4">
-                    {p.tags.slice(0, 4).map((t) => (
+
+                  <div className="relative mt-6">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-bnb/80">
+                      project 0{i + 4}
+                    </div>
+                    <h4 className="mt-1.5 font-display text-lg font-bold tracking-tight text-ink">
+                      {p.shortTitle}
+                    </h4>
+                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-tertiary">
+                      {p.description}
+                    </p>
+                  </div>
+
+                  <div className="relative mt-5 flex flex-wrap gap-1.5 border-t border-border-subtle pt-4">
+                    {p.tags.slice(0, 5).map((t) => (
                       <span
                         key={t}
-                        className="rounded-md bg-bg-tertiary px-2 py-0.5 text-[11px] font-medium text-ink-secondary"
+                        className="rounded-md border border-border bg-bg-tertiary/60 px-2 py-0.5 font-mono text-[10.5px] text-ink-secondary"
                       >
                         {t}
                       </span>

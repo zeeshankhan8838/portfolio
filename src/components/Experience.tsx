@@ -13,9 +13,10 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative bg-bg-tertiary/40 py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
     >
-      <div className="container-page">
+      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:52px_52px] opacity-[0.22]" />
+      <div className="container-page relative">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -23,12 +24,13 @@ export function Experience() {
           transition={{ duration: 0.5 }}
           className="max-w-2xl"
         >
-          <span className="section-eyebrow">
+          <span className="eyebrow">
             <Briefcase className="h-3.5 w-3.5" />
             Experience
           </span>
           <h2 className="section-title">
-            Four roles, <span className="text-accent">one trajectory</span> of shipping
+            Four roles,{" "}
+            <span className="word-gold">one trajectory</span> of shipping
           </h2>
           <p className="section-lead">
             From backend APIs to leading enterprise product teams — a linear
@@ -36,60 +38,99 @@ export function Experience() {
           </p>
         </motion.div>
 
-        <ol className="relative mt-16 space-y-10 before:absolute before:left-4 before:top-1 before:h-[calc(100%-1rem)] before:w-px before:bg-border sm:before:left-5">
-          {experience.map((exp, i) => (
-            <motion.li
-              key={exp.company + exp.period}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="relative pl-12 sm:pl-16"
-            >
-              <span className="absolute left-0 top-1 grid h-8 w-8 place-items-center rounded-full border-4 border-bg bg-ink sm:h-10 sm:w-10">
-                <Building2 className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />
-              </span>
+        <div className="relative mt-16">
+          {/* Vertical line */}
+          <div className="absolute left-[17px] top-2 h-[calc(100%-1.75rem)] w-px sm:left-[21px]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to bottom, rgba(240,185,11,0.7), rgba(240,185,11,0.2) 60%, rgba(240,185,11,0.05))",
+            }}
+          />
 
-              <div className="card card-hover p-6 sm:p-7">
-                <div className="flex flex-col gap-2 border-b border-border-subtle pb-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                  <div>
-                    <h3 className="font-display text-lg font-semibold leading-tight text-ink sm:text-xl">
-                      {exp.role}
-                    </h3>
-                    <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <span className="text-sm font-semibold text-accent">
-                        {exp.company}
-                      </span>
-                      <span className="text-sm text-ink-muted flex items-center gap-1">
-                        <MapPin className="h-3.5 w-3.5" />
-                        {exp.location}
+          <ol className="space-y-10">
+            {experience.map((exp, i) => (
+              <motion.li
+                key={exp.company + exp.period}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="relative pl-14 sm:pl-[68px]"
+              >
+                {/* Timeline node */}
+                <span className="absolute left-0 top-2">
+                  <span className="relative flex h-9 w-9 items-center justify-center sm:h-[52px] sm:w-[52px]">
+                    <span className="absolute inset-0 rounded-2xl bg-bnb/15 animate-pulse-slow" />
+                    <span className="relative grid h-9 w-9 place-items-center rounded-xl border border-bnb/50 bg-bg-secondary sm:h-[52px] sm:w-[52px] sm:rounded-2xl">
+                      <Building2 className="h-4 w-4 text-bnb sm:h-5 sm:w-5" strokeWidth={2.2} />
+                    </span>
+                  </span>
+                </span>
+
+                <div className="card card-hover gold-wrap overflow-hidden p-6 sm:p-7">
+                  <div className="flex flex-col gap-3 border-b border-border-subtle pb-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <h3 className="font-display text-lg font-bold tracking-tight text-ink sm:text-xl">
+                          {exp.role}
+                        </h3>
+                        <span className="chip-gold">{exp.company}</span>
+                      </div>
+                      <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-ink-tertiary sm:text-[13px]">
+                        <span className="inline-flex items-center gap-1.5">
+                          <MapPin className="h-3.5 w-3.5 text-bnb" />
+                          {exp.location}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="shrink-0">
+                      <span className="relative inline-flex items-center gap-2 rounded-full border border-border bg-bg-tertiary/60 px-3.5 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-ink-secondary">
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-bnb shadow-[0_0_6px_rgba(240,185,11,0.9)]" />
+                        {exp.period}
                       </span>
                     </div>
                   </div>
-                  <div className="shrink-0">
-                    <span className="chip whitespace-nowrap">{exp.period}</span>
-                  </div>
+
+                  <p className="mt-4 text-sm leading-relaxed text-ink-tertiary sm:text-[15px]">
+                    {exp.description}
+                  </p>
+
+                  <ul className="mt-5 space-y-2.5">
+                    {exp.highlights.map((h, j) => (
+                      <li
+                        key={j}
+                        className="flex items-start gap-3.5"
+                      >
+                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-md bg-bnb/10 text-bnb">
+                          <CheckCircle2 className="h-3.5 w-3.5" strokeWidth={2.5} />
+                        </span>
+                        <span className="text-sm leading-relaxed text-ink-secondary sm:text-[15px]">
+                          {h}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+              </motion.li>
+            ))}
+          </ol>
 
-                <p className="mt-4 text-sm leading-relaxed text-ink-tertiary sm:text-[15px]">
-                  {exp.description}
-                </p>
-
-                <ul className="mt-5 space-y-2.5">
-                  {exp.highlights.map((h, j) => (
-                    <li
-                      key={j}
-                      className="flex items-start gap-3 text-sm leading-relaxed text-ink-secondary sm:text-[15px]"
-                    >
-                      <CheckCircle2 className="mt-0.5 h-[18px] w-[18px] shrink-0 text-accent" />
-                      <span className="flex-1">{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.li>
-          ))}
-        </ol>
+          {/* End cap */}
+          <div className="mt-8 flex items-center justify-center">
+            <div className="inline-flex items-center gap-2 rounded-full border border-bnb/25 bg-bnb/[0.06] px-5 py-2.5">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-bnb/90">
+                present day
+              </span>
+              <span className="flex h-2 w-2">
+                <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-success opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+              </span>
+              <span className="text-sm font-semibold text-ink-secondary">
+                still shipping 🚀
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

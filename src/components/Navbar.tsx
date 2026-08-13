@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Hexagon, Menu, Sparkles, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -21,9 +21,9 @@ export function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 8);
+      setScrolled(window.scrollY > 10);
       const sections = navLinks.map((l) => document.querySelector(l.href));
-      const y = window.scrollY + 140;
+      const y = window.scrollY + 160;
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = sections[i];
         if (el && el.getBoundingClientRect().top + window.scrollY <= y) {
@@ -48,28 +48,39 @@ export function Navbar() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-border-subtle bg-bg/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-bg/60 backdrop-blur-md"
+          ? "border-b border-border bg-bg/70 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
       )}
     >
       <nav className="container-page flex h-16 items-center justify-between sm:h-20">
+        {/* Logo */}
         <a
           href="#top"
           onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="group flex items-center gap-2"
+          className="group flex items-center gap-2.5"
         >
-          <span className="grid h-9 w-9 place-items-center rounded-lg bg-ink font-display text-sm font-bold text-white transition-transform group-hover:scale-[1.03]">
-            ZK
-          </span>
-          <span className="hidden font-display text-[15px] font-semibold tracking-tight text-ink sm:block">
-            Zeeshan Khan
-          </span>
+          <div className="relative">
+            <div className="absolute inset-0 animate-pulse-gold rounded-xl" />
+            <div className="relative grid h-9 w-9 place-items-center rounded-xl bg-bnb text-bg-secondary transition-transform group-hover:rotate-6 group-hover:scale-105">
+              <Hexagon className="h-5 w-5" strokeWidth={2.5} />
+            </div>
+          </div>
+          <div className="hidden flex-col leading-none sm:flex">
+            <span className="font-display text-[15px] font-extrabold tracking-tight text-ink">
+              ZEESHAN<span className="text-bnb">.</span>KHAN
+            </span>
+            <span className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-bnb/80">
+              <Sparkles className="mr-1 inline h-2.5 w-2.5" />
+              Full Stack · AI Engineer
+            </span>
+          </div>
         </a>
 
-        <div className="hidden items-center gap-8 lg:flex">
+        {/* Desktop nav */}
+        <div className="hidden items-center gap-7 lg:flex">
           {navLinks.map((l) => (
             <a
               key={l.href}
@@ -86,39 +97,49 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex items-center gap-2.5">
+          <a
+            href="https://linkedin.com/in/zeeshan8838"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-ghost"
+          >
+            /in/zeeshan8838
+          </a>
           <a
             href="mailto:zeeshankhan8838@gmail.com"
             className="btn-primary"
           >
-            Get in touch
+            Hire me
           </a>
         </div>
 
+        {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-secondary text-ink-secondary transition-colors hover:bg-bg-tertiary lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-secondary text-bnb transition-all hover:border-bnb/50 hover:shadow-glow-gold lg:hidden"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="overflow-hidden border-t border-border-subtle bg-bg-secondary lg:hidden"
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="overflow-hidden border-t border-border bg-bg-secondary/95 backdrop-blur-xl lg:hidden"
           >
             <div className="container-page flex flex-col gap-1 py-4">
               {navLinks.map((l, i) => (
                 <motion.a
                   key={l.href}
                   href={l.href}
-                  initial={{ opacity: 0, x: -6 }}
+                  initial={{ opacity: 0, x: -8 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.04 }}
                   onClick={(e) => {
@@ -126,21 +147,37 @@ export function Navbar() {
                     go(l.href);
                   }}
                   className={cn(
-                    "rounded-lg px-4 py-3 text-sm font-medium transition-colors",
+                    "flex items-center justify-between rounded-xl border border-transparent px-4 py-3 text-sm font-semibold transition-colors",
                     active === l.href
-                      ? "bg-bg-tertiary text-ink"
-                      : "text-ink-secondary hover:bg-bg-tertiary hover:text-ink"
+                      ? "border-bnb/30 bg-bnb/10 text-bnb"
+                      : "text-ink-secondary hover:border-border hover:bg-bg-tertiary hover:text-ink"
                   )}
                 >
-                  {l.label}
+                  <span>
+                    <span className="mr-2 font-mono text-[11px] text-bnb/60">
+                      0{i + 1}.
+                    </span>
+                    {l.label}
+                  </span>
+                  <span className="text-bnb/70">→</span>
                 </motion.a>
               ))}
-              <a
-                href="mailto:zeeshankhan8838@gmail.com"
-                className="btn-primary mt-3"
-              >
-                Get in touch
-              </a>
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <a
+                  href="https://linkedin.com/in/zeeshan8838"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="mailto:zeeshankhan8838@gmail.com"
+                  className="btn-primary"
+                >
+                  Email
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
