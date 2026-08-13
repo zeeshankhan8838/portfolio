@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 import Image from "next/image";
 import {
   Briefcase,
@@ -10,12 +11,33 @@ import {
 import { experience } from "@/lib/data";
 
 export function Experience() {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
+
   return (
     <section
       id="experience"
       className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
     >
       <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-[0.20]" />
+      {/* Animated background accent */}
+      <motion.div 
+        aria-hidden
+        className="pointer-events-none absolute -left-40 top-1/3 h-80 w-80 rounded-full bg-bnb/[0.04] blur-3xl"
+        animate={{ 
+          x: [0, 30, 0],
+          opacity: [0.4, 0.6, 0.4],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div 
+        aria-hidden
+        className="pointer-events-none absolute -right-40 bottom-1/3 h-80 w-80 rounded-full bg-bnb/[0.03] blur-3xl"
+        animate={{ 
+          x: [0, -30, 0],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
       <div className="container-page relative">
         <motion.div
           initial={{ opacity: 0, y: 14 }}

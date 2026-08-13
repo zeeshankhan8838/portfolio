@@ -350,13 +350,17 @@ function ContactCard(props: {
   accent?: boolean;
 }) {
   const Inner = (
-    <div
+    <motion.div
+      whileHover={{ y: -2, scale: 1.01 }}
+      transition={{ duration: 0.2 }}
       className={
         "card card-hover card-hairline flex items-center gap-4 p-5 sm:p-5 transition-all duration-200 ease-out " +
         (props.accent ? "gold-wrap" : "")
       }
     >
-      <div
+      <motion.div
+        whileHover={{ scale: 1.08 }}
+        transition={{ duration: 0.2 }}
         className={
           "grid h-11 w-11 shrink-0 place-items-center rounded-md border transition-all duration-200 ease-out sm:h-12 sm:w-12 " +
           (props.accent
@@ -365,7 +369,7 @@ function ContactCard(props: {
         }
       >
         <props.Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5" strokeWidth={2} />
-      </div>
+      </motion.div>
       <div className="min-w-0 flex-1 pt-0.5">
         <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-muted">
           {props.label}
@@ -374,7 +378,7 @@ function ContactCard(props: {
           {props.value}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
   return props.href ? (
     <a

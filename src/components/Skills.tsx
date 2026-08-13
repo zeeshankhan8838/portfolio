@@ -63,15 +63,21 @@ export function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                className="card card-hover card-hairline relative flex flex-col p-6 sm:p-7 corner-deco"
+                whileHover={{ y: -3 }}
+                className="card card-hover card-hairline group relative flex flex-col p-6 sm:p-7 corner-deco"
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-bnb/[0.04] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="flex items-center gap-4">
-                  <div className="relative">
+                  <motion.div 
+                    className="relative"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <div className="absolute inset-0 rounded-xl bg-bnb/18 blur-md opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" />
                     <div className="icon-box icon-box-gold">
                       <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
                     </div>
-                  </div>
+                  </motion.div>
                   <div>
                     <h3 className="font-display text-base font-bold tracking-tight text-ink sm:text-lg">
                       {cat.category}
@@ -89,8 +95,9 @@ export function Skills() {
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
+                      whileHover={{ scale: 1.08, borderColor: "rgba(240, 185, 11, 0.45)", color: "#F0B90B", backgroundColor: "rgba(240, 185, 11, 0.05)" }}
                       transition={{ duration: 0.3, delay: i * 0.06 + j * 0.02 }}
-                      className="tag"
+                      className="tag cursor-default"
                       title={s}
                     >
                       {s}

@@ -37,6 +37,37 @@ export function Hero() {
         <div className="absolute left-1/2 top-[-130px] h-[620px] w-[920px] -translate-x-1/2 rounded-full bg-bnb/[0.09] blur-[130px]" />
       </div>
 
+      {/* Animated floating particles */}
+      <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+              opacity: [0, 0.7, 0],
+              scale: [0, 1.2, 0],
+              x: [0, (i % 2 === 0 ? 1 : -1) * (30 + i * 15)],
+              y: [0, -50 - i * 12],
+            }}
+            transition={{
+              duration: 3.5 + i * 0.4,
+              repeat: Infinity,
+              delay: i * 0.6,
+              ease: "easeInOut",
+            }}
+            className="absolute rounded-full"
+            style={{
+              left: `${12 + i * 11}%`,
+              top: `${55 + (i % 3) * 18}%`,
+              width: i % 3 === 0 ? '3px' : '2px',
+              height: i % 3 === 0 ? '3px' : '2px',
+              background: i % 2 === 0 ? '#F0B90B' : '#FCD535',
+              boxShadow: i % 2 === 0 ? '0 0 6px #F0B90B' : '0 0 4px #FCD535',
+            }}
+          />
+        ))}
+      </div>
+
       {/* Floating decorative blobs */}
       <motion.div
         aria-hidden
@@ -113,16 +144,16 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="mt-9 flex flex-wrap items-center gap-3.5"
         >
-          <button onClick={() => go("#projects")} className="btn-primary">
+          <button onClick={() => go("#projects")} className="btn-primary group">
             View my projects
-            <ArrowUpRight className="h-4 w-4" strokeWidth={2.2} />
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={2.2} />
           </button>
           <button onClick={() => go("#contact")} className="btn-secondary">
             <Mail className="h-4 w-4" />
             Let&apos;s talk
           </button>
-          <button onClick={copyEmail} className="btn-ghost">
-            <Copy className="h-4 w-4" />
+          <button onClick={copyEmail} className="btn-ghost group">
+            <Copy className="h-4 w-4 transition-transform group-hover:scale-110" />
             Copy email
           </button>
 
@@ -149,11 +180,17 @@ export function Hero() {
           <div className="flex flex-col gap-6 lg:col-span-7">
             <CodeSnippetCard />
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-              {personalInfo.stats.map((s) => (
-                <div key={s.label} className="metric gold-wrap card-hairline">
+              {personalInfo.stats.map((s, i) => (
+                <motion.div
+                  key={s.label}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.35 + i * 0.05 }}
+                  className="metric gold-wrap card-hairline"
+                >
                   <div className="metric-value">{s.value}</div>
                   <div className="metric-label">{s.label}</div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -188,17 +225,21 @@ export function Hero() {
   );
 }
 
-function SocialLink({ Icon, href }: { Icon: any; href: string }) {
+import type { LucideIcon } from "lucide-react";
+
+function SocialLink({ Icon, href }: { Icon: LucideIcon; href: string }) {
   return (
-    <a
+    <motion.a
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel="noopener noreferrer"
       className="grid h-10 w-10 place-items-center rounded-md border border-border bg-bg-secondary text-ink-tertiary transition-all duration-150 ease-out hover:-translate-y-0.5 hover:border-bnb/50 hover:text-bnb hover:shadow-glow-gold"
       aria-label="social"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.15 }}
     >
       <Icon className="h-4.5 w-4.5" strokeWidth={2} />
-    </a>
+    </motion.a>
   );
 }
 
@@ -213,7 +254,11 @@ function ProfileCard() {
   ];
 
   return (
-    <div className="card card-hover corner-deco gold-wrap card-hairline overflow-hidden">
+    <motion.div
+      className="card card-hover corner-deco gold-wrap card-hairline overflow-hidden"
+      whileHover={{ y: -2 }}
+      transition={{ duration: 0.2 }}
+    >
       {/* header */}
       <div className="term-head">
         <span className="term-dot bg-danger" />
@@ -234,7 +279,11 @@ function ProfileCard() {
         {/* Avatar row */}
         <div className="flex items-center gap-5">
           <div className="relative">
-            <div className="absolute -inset-[1.5px] rounded-full bg-gradient-to-br from-bnb via-bnb-soft to-bnb opacity-65 blur-[1px]" />
+            <motion.div 
+              className="absolute -inset-[1.5px] rounded-full bg-gradient-to-br from-bnb via-bnb-soft to-bnb opacity-65 blur-[1px]"
+              animate={{ opacity: [0.65, 0.8, 0.65] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
             <div className="relative grid h-20 w-20 place-items-center rounded-full border border-bnb/35 bg-gradient-to-br from-bg-secondary via-bg-tertiary to-bg-secondary text-3xl font-extrabold text-bnb shadow-[0_0_0_1px_rgba(240,185,11,0.18),0_0_24px_-4px_rgba(240,185,11,0.45)] sm:h-24 sm:w-24">
               ZK
             </div>
@@ -249,7 +298,9 @@ function ProfileCard() {
             </div>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {["LLMs", "React", "Angular", "FastAPI"].map((t) => (
-                <span key={t} className="tag">{t}</span>
+                <span key={t} className="tag">
+                  {t}
+                </span>
               ))}
             </div>
           </div>
@@ -257,9 +308,12 @@ function ProfileCard() {
 
         {/* KV list */}
         <div className="mt-7 space-y-1 border-t border-border-subtle pt-5">
-          {lines.map((l) => (
-            <div
+          {lines.map((l, i) => (
+            <motion.div
               key={l.k}
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: i * 0.04 }}
               className="group flex items-center justify-between gap-3 rounded-md px-2 py-1.5 transition-colors duration-150 ease-out hover:bg-bg-tertiary/60"
             >
               <span className="font-mono text-[11px] uppercase tracking-widest text-ink-muted">
@@ -273,32 +327,39 @@ function ProfileCard() {
               >
                 {l.v}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Langs + status */}
         <div className="mt-6 grid grid-cols-2 gap-3 border-t border-border-subtle pt-5">
-          {personalInfo.languages.map((l) => (
-            <div
+          {personalInfo.languages.map((l, i) => (
+            <motion.div
               key={l.name}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 + i * 0.05 }}
               className="flex items-center justify-between rounded-lg border border-border bg-bg-tertiary/50 px-3.5 py-3 transition-colors duration-150 ease-out hover:border-bnb/35"
             >
               <span className="text-sm font-semibold text-ink">{l.name}</span>
               <span className="font-mono text-[10px] uppercase tracking-wider text-bnb">
                 {l.level}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 function CodeSnippetCard() {
   return (
-    <div className="card card-hover card-hairline overflow-hidden">
+    <motion.div
+      className="card card-hover card-hairline overflow-hidden"
+      whileHover={{ y: -2 }}
+      transition={{ duration: 0.2 }}
+    >
       <div className="term-head">
         <span className="term-dot bg-danger" />
         <span className="term-dot bg-bnb" />
@@ -313,13 +374,13 @@ function CodeSnippetCard() {
 
       <pre className="overflow-x-auto px-5 py-5 font-mono text-[12.5px] leading-relaxed text-ink-secondary sm:px-6 sm:text-[13px]">
 {`const zeeshan = {
-  role: ${s("Senior Software Engineer")},
+  role: "Senior Software Engineer",
   stack: {
-    frontend: ${a(["Angular", "React", "Next.js", "TypeScript"])},
-    backend:  ${a(["Node.js", "FastAPI", "ASP.NET Core", "GraphQL"])},
-    ai:       ${a(["LLMs", "RAG", "LangChain", "MCP", "AI Agents"])}
+    frontend: ["Angular", "React", "Next.js", "TypeScript"],
+    backend:  ["Node.js", "FastAPI", "ASP.NET Core", "GraphQL"],
+    ai:       ["LLMs", "RAG", "LangChain", "MCP", "AI Agents"]
   },
-  clients: ${a(["Halliburton", "Extreme Networks", "LMKR"])},
+  clients: ["Halliburton", "Extreme Networks", "LMKR"],
   focus: "Agentic workflows + enterprise delivery",
   shipping: async (spec) => {
     while (spec.deadline) {
@@ -327,69 +388,40 @@ function CodeSnippetCard() {
       await review();
       spec.morale++
     }
-    return ${s("production-ready ✨")};
+    return "production-ready ✨";
   }
 };
 
-zeeshan.shipping(${s("your idea?")}).then(hireMe);`}
+zeeshan.shipping("your idea?").then(hireMe);`}
       </pre>
 
       {/* Mini contact strip */}
       <div className="grid grid-cols-2 gap-px border-t border-border bg-border-line sm:grid-cols-4">
-        {[
-          { Icon: MapPin, label: "Islamabad, PK", href: null },
-          { Icon: Mail, label: personalInfo.email, href: `mailto:${personalInfo.email}`, mono: true },
-          { Icon: Phone, label: personalInfo.phone, href: `tel:${personalInfo.phone.replace(/\s/g, "")}`, mono: true },
-          { Icon: Linkedin, label: "/in/zeeshan8838", href: personalInfo.linkedin, mono: true },
-        ].map(({ Icon, label, href, mono }) => {
-          const Inner = (
-            <div className="flex items-center gap-3 bg-bg-secondary px-4 py-3.5 transition-colors duration-150 ease-out hover:bg-bg-tertiary/70">
-              <Icon className="h-4 w-4 shrink-0 text-bnb" strokeWidth={2} />
-              <span className={
-                "truncate text-xs font-medium text-ink-secondary sm:text-[13px] " +
-                (mono ? "font-mono" : "")
-              }>
-                {label}
-              </span>
-            </div>
-          );
-          return href ? (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="block"
-            >
-              {Inner}
-            </a>
-          ) : (
-            <div key={label}>{Inner}</div>
-          );
-        })}
+        <ContactItem Icon={MapPin} label="Islamabad, PK" />
+        <ContactItem Icon={Mail} label={personalInfo.email} href={`mailto:${personalInfo.email}`} mono />
+        <ContactItem Icon={Phone} label={personalInfo.phone} href={`tel:${personalInfo.phone.replace(/\s/g, "")}`} mono />
+        <ContactItem Icon={Linkedin} label="/in/zeeshan8838" href={personalInfo.linkedin} mono />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
-function s(v: string) {
-  return (
-    <span className="text-success">
-      &quot;<span className="underline decoration-success/35 decoration-[1.5px] underline-offset-2">{v}</span>&quot;
-    </span>
-  ) as unknown as string;
-}
-function a(arr: string[]) {
-  return (
-    <>
-      <span className="text-ink-muted">[</span>
-      {arr.map((v, i) => (
-        <span key={v + i}>
-          <span className="text-success">&quot;{v}&quot;</span>
-          {i < arr.length - 1 && <span className="text-ink-muted">, </span>}
-        </span>
-      ))}
-      <span className="text-ink-muted">]</span>
-    </>
-  ) as unknown as string;
+function ContactItem({ Icon, label, href, mono }: { Icon: LucideIcon; label: string; href?: string; mono?: boolean }) {
+  const content = (
+    <div className="flex items-center gap-3 bg-bg-secondary px-4 py-3.5 transition-colors duration-150 ease-out hover:bg-bg-tertiary/70">
+      <Icon className="h-4 w-4 shrink-0 text-bnb" strokeWidth={2} />
+      <span className={"truncate text-xs font-medium text-ink-secondary sm:text-[13px] " + (mono ? "font-mono" : "")}>
+        {label}
+      </span>
+    </div>
+  );
+  
+  if (href) {
+    return (
+      <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
+        {content}
+      </a>
+    );
+  }
+  return <>{content}</>;
 }

@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import { useState } from "react";
 import Image from "next/image";
-import { ExternalLink, FolderKanban, Sparkles } from "lucide-react";
+import { ExternalLink, FolderKanban, Sparkles, ArrowUpRight } from "lucide-react";
 import { projects } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 export function Projects() {
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
 
@@ -18,6 +19,16 @@ export function Projects() {
     >
       <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-35" />
       <div aria-hidden className="pointer-events-none absolute left-1/2 top-24 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-bnb/[0.05] blur-[120px]" />
+      
+      {/* Animated corner accents */}
+      <div aria-hidden className="pointer-events-none absolute left-0 top-0 h-32 w-32 opacity-30">
+        <div className="absolute left-8 top-8 h-16 w-16 border-l-2 border-t-2 border-bnb/40" />
+        <div className="absolute left-12 top-12 h-8 w-8 border-l border-t border-bnb/20" />
+      </div>
+      <div aria-hidden className="pointer-events-none absolute bottom-0 right-0 h-32 w-32 opacity-30">
+        <div className="absolute bottom-8 right-8 h-16 w-16 border-b-2 border-r-2 border-bnb/40" />
+        <div className="absolute bottom-12 right-12 h-8 w-8 border-b border-r border-bnb/20" />
+      </div>
 
       <div className="container-page relative">
         <motion.div
@@ -57,11 +68,20 @@ export function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                onHoverStart={() => setHoveredProject(p.id)}
+                onHoverEnd={() => setHoveredProject(null)}
                 className={cn(
                   "group card card-hover card-hairline relative flex flex-col overflow-hidden",
                   i === 0 && "lg:col-span-2"
                 )}
               >
+                {/* Glow effect on hover */}
+                <div 
+                  className={cn(
+                    "absolute inset-0 bg-gradient-to-br from-bnb/5 to-transparent opacity-0 transition-opacity duration-500",
+                    hoveredProject === p.id && "opacity-100"
+                  )}
+                />
                 <div
                   className={cn(
                     "relative w-full overflow-hidden border-b border-border-subtle bg-bg-tertiary",
@@ -73,7 +93,7 @@ export function Projects() {
                     alt={p.title}
                     fill
                     unoptimized
-                    className="object-contain bg-bg-tertiary transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    className="object-contain bg-bg-tertiary transition-all duration-700 ease-out group-hover:scale-[1.04]"
                     sizes={
                       i === 0
                         ? "(max-width: 1024px) 100vw, 66vw"
@@ -81,8 +101,8 @@ export function Projects() {
                     }
                     priority={i < 2}
                   />
-                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg/92 via-bg/18 to-transparent" />
-                  <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:36px_36px] opacity-35 mix-blend-overlay" />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg to-bg-secondary/80 via-bg-secondary/60" />
+                  <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:36px_36px] opacity-15 mix-blend-overlay" />
 
                   <div className="absolute left-4 top-4 flex items-center gap-2">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-bnb ring-1 ring-bnb/35 backdrop-blur-sm">
@@ -94,34 +114,40 @@ export function Projects() {
                     </span>
                   </div>
 
-                  
-
-                  <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 sm:pb-7">
-                    <div className="flex items-end justify-between gap-4">
-                      <div className="min-w-0">
-                        <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-bnb/90 drop-shadow">
-                          case study 0{i + 1}
-                        </div>
-                        <h3 className="mt-1.5 font-display text-2xl font-extrabold leading-tight tracking-tight text-white drop-shadow-md sm:text-3xl">
-                          {p.shortTitle}
-                        </h3>
-                        <p className="mt-1.5 text-sm text-white/85 sm:text-[15px] drop-shadow">
-                          {p.subtitle}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Hover reveal arrow */}
+                  <motion.div 
+                    className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-bnb text-bg-secondary opacity-0 transition-opacity duration-300"
+                    animate={{ opacity: hoveredProject === p.id ? 1 : 0, scale: hoveredProject === p.id ? [1, 1.1, 1] : 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ArrowUpRight className="h-4 w-4" />
+                  </motion.div>
                 </div>
 
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <div className="mb-4">
+                    <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-bnb/90">
+                      case study 0{i + 1}
+                    </div>
+                    <h3 className="mt-2 font-display text-2xl font-extrabold leading-tight tracking-tight text-ink sm:text-3xl">
+                      {p.shortTitle}
+                    </h3>
+                    <p className="mt-2 text-sm text-ink-tertiary sm:text-[15px]">
+                      {p.subtitle}
+                    </p>
+                  </div>
                   <p className="text-sm leading-relaxed text-ink-tertiary sm:text-[15px]">
                     {p.description}
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2 border-t border-border-subtle pt-5">
-                    {p.tags.map((t) => (
-                      <span key={t} className="tag">
+                    {p.tags.map((t, j) => (
+                      <motion.span 
+                        key={t} 
+                        className="tag"
+                        whileHover={{ scale: 1.05 }}
+                      >
                         {t}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </div>
@@ -160,7 +186,7 @@ export function Projects() {
                       className="object-contain bg-bg-tertiary transition-transform duration-500 ease-out group-hover:scale-[1.05]"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg-secondary/88 via-bg-secondary/10 to-transparent" />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg via-bg-secondary/70 to-bg-secondary/40" />
                   </div>
 
                   <div className="flex flex-1 flex-col p-6">

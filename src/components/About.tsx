@@ -52,11 +52,14 @@ const pillars = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 sm:py-24 lg:py-28">
+    <section id="about" className="relative py-20 sm:py-24 lg:py-28 overflow-hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-[0.22]"
       />
+      {/* Animated corner gradient */}
+      <div aria-hidden className="pointer-events-none absolute -right-32 top-0 h-64 w-64 rounded-full bg-bnb/[0.06] blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 h-64 w-64 rounded-full bg-bnb/[0.04] blur-3xl" />
       <div className="container-page relative">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
@@ -126,15 +129,22 @@ export function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                  className="group card card-hover card-hairline relative overflow-hidden p-6"
+                  whileHover={{ y: -3 }}
+                  className="group card card-hover card-hairline relative overflow-hidden p-6 cursor-default"
                 >
                   <div className="pointer-events-none absolute -right-10 -top-10 font-display text-[5.5rem] font-extrabold leading-none text-bnb/[0.06] transition-transform duration-500 ease-out group-hover:scale-110 group-hover:text-bnb/[0.10]">
                     {p.num}
                   </div>
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-bnb/[0.03] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <div className="relative">
-                    <div className="icon-box icon-box-gold icon-box-gold-hover group-hover:shadow-glow-gold">
+                    <motion.div 
+                      className="icon-box icon-box-gold icon-box-gold-hover group-hover:shadow-glow-gold"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <p.icon className="h-6 w-6" strokeWidth={2} />
-                    </div>
+                    </motion.div>
                     <h3 className="mt-5 font-display text-[15px] font-bold leading-snug tracking-tight text-ink sm:text-base">
                       {p.title}
                     </h3>

@@ -330,4 +330,59 @@ body::before {
     backdrop-filter: saturate(180%) blur(18px);
     -webkit-backdrop-filter: saturate(180%) blur(18px);
   }
+  
+  /* Additional creative animations */
+  .animate-glow-pulse-slow {
+    animation: glowPulseSlow 4s ease-in-out infinite;
+  }
+  
+  .animate-float-3d {
+    animation: float3d 6s ease-in-out infinite;
+  }
+  
+  .animate-gradient-shift {
+    animation: gradientShift 8s ease infinite;
+  }
+  
+  .animate-border-dance {
+    animation: borderDance 3s linear infinite;
+  }
+}
+
+@keyframes glowPulseSlow {
+  0%, 100% { 
+    box-shadow: 0 0 20px -5px rgba(240, 185, 11, 0.3);
+    opacity: 0.6;
+  }
+  50% { 
+    box-shadow: 0 0 30px -5px rgba(240, 185, 11, 0.5);
+    opacity: 1;
+  }
+}
+
+@keyframes float3d {
+  0%, 100% { 
+    transform: translateY(0) translateX(0) rotateX(0) rotateY(0);
+  }
+  25% { 
+    transform: translateY(-8px) translateX(4px) rotateX(2deg) rotateY(-2deg);
+  }
+  50% { 
+    transform: translateY(0) translateX(8px) rotateX(0) rotateY(0);
+  }
+  75% { 
+    transform: translateY(8px) translateX(4px) rotateX(-2deg) rotateY(2deg);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes borderDance {
+  0% { border-color: rgba(240, 185, 11, 0.3); }
+  33% { border-color: rgba(240, 185, 11, 0.6); }
+  66% { border-color: rgba(240, 185, 11, 0.3); }
+  100% { border-color: rgba(240, 185, 11, 0.3); }
 }
