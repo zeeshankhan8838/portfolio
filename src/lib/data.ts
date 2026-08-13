@@ -29,6 +29,60 @@ export const personalInfo = {
   ],
 };
 
+export const zeeshanObject = {
+  role: {
+    current: "Senior Software Engineer I",
+    levels: [
+      "Backend Developer",
+      "Frontend Developer",
+      "Full Stack Developer",
+      "Senior Software Engineer I",
+    ],
+    timeline: "2020 — Present",
+  },
+  stack: {
+    frontend: [
+      "Angular",
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "Single-SPA",
+      "Nx Monorepo",
+      "Redux Toolkit",
+      "NgRx",
+    ],
+    backend: [
+      "Node.js",
+      "FastAPI",
+      "ASP.NET Core",
+      "GraphQL",
+      "SQL",
+      "NoSQL",
+      "SignalR",
+      "WebSockets",
+    ],
+    ai: [
+      "LLMs",
+      "AI Agents",
+      "Agentic Workflows",
+      "RAG",
+      "LangChain",
+      "MCP",
+      "Prompt Engineering",
+    ],
+  },
+  clients: [
+    "Halliburton",
+    "Extreme Networks",
+    "PMRSC",
+    "WASA",
+    "LDP",
+    "Upwork Enterprise",
+    "Projul",
+  ],
+  focus: "Agentic workflows + enterprise delivery",
+};
+
 export const skills = [
   {
     category: "AI & Agentic Systems",
@@ -99,6 +153,7 @@ export const experience = [
     role: "Senior Software Engineer I",
     period: "May 2025 – Present",
     location: "Remote",
+    logo: "/companies/emumba.jpeg",
     description:
       "Delivering flagship AI and enterprise products while mentoring engineers and leading technical architecture.",
     highlights: [
@@ -115,6 +170,7 @@ export const experience = [
     role: "Full Stack Developer",
     period: "Jan 2023 – Apr 2025",
     location: "On-Site",
+    logo: "/companies/lmkr.jpeg",
     description:
       "Built enterprise and government-scale applications for major clients in oil & gas and public sectors.",
     highlights: [
@@ -128,6 +184,7 @@ export const experience = [
     role: "Frontend Developer",
     period: "Aug 2021 – Dec 2022",
     location: "Hybrid",
+    logo: "/companies/saufik.jpeg",
     description:
       "Built a real estate management platform with real-time updates and performant UI architecture.",
     highlights: [
@@ -140,6 +197,7 @@ export const experience = [
     role: "Backend Developer",
     period: "Oct 2020 – Aug 2021",
     location: "On-Site",
+    logo: "/companies/o2geeks.jpeg",
     description:
       "Shipped RESTful APIs and partnered on scalable architecture across multiple product launches.",
     highlights: [
@@ -159,6 +217,7 @@ export const projects = [
       "AI-driven platform for device intelligence and predictive analytics, enabling proactive rather than reactive monitoring. Owned full-stack delivery — GenAI/FastAPI backend with React.js frontend on AWS.",
     tags: ["GenAI", "FastAPI", "React.js", "AWS", "RAG", "LLM"],
     link: "https://app.prod.udroid.ai",
+    image: "/projects/extreme.jpeg",
     featured: true,
     category: "AI Platform",
   },
@@ -178,6 +237,7 @@ export const projects = [
       "Node.js",
     ],
     link: "#",
+    image: "/projects/extreme.jpeg",
     featured: true,
     category: "Enterprise SaaS",
   },
@@ -190,6 +250,7 @@ export const projects = [
       "Data-intensive dashboards for global oil and gas analytics, supporting faster decisions for globally distributed teams. Built with Angular, PrimeNG, Highcharts/ECharts within an Nx Monorepo.",
     tags: ["Angular", "PrimeNG", "Highcharts", "ECharts", "Nx Monorepo", "SQL"],
     link: "#",
+    image: "/projects/halliburton.avif",
     featured: true,
     category: "Enterprise Analytics",
   },
@@ -202,6 +263,7 @@ export const projects = [
       "AI-assisted HR automation platform using LangChain and MCP-powered multi-tool agents to automate previously manual HR and network-ops processes end-to-end.",
     tags: ["LangChain", "MCP", "AI Agents", "RAG", "Next.js", "FastAPI"],
     link: "#",
+    image: "/projects/mcl.jpg",
     featured: false,
     category: "AI Platform",
   },
@@ -214,20 +276,48 @@ export const projects = [
       "Real estate management platform using Angular, React, and ASP.NET Core. SignalR-powered real-time listing updates, reusable UI components, and IndexedDB caching for performance.",
     tags: ["Angular", "React", "ASP.NET Core", "SignalR", "IndexedDB"],
     link: "#",
+    image: "/projects/projul.jpeg",
     featured: false,
     category: "Real Estate SaaS",
   },
   {
     id: 6,
-    title: "Government Public Sector Applications",
-    shortTitle: "Public Sector Apps",
-    subtitle: "Enterprise systems for PMRSC, LDP, and WASA",
+    title: "PMRSC — Government Public Sector",
+    shortTitle: "PMRSC",
+    subtitle: "Enterprise public sector system for PMRSC",
     description:
-      "Enterprise and government-scale applications for PMRSC, LDP, and WASA — built with Angular, ASP.NET Core, GraphQL, and SQL. Partnered directly with client stakeholders on secure, production-ready systems.",
+      "Enterprise government-scale application for PMRSC. Partnered directly with client stakeholders on secure, auditable, production-ready systems. Built with Angular, ASP.NET Core, GraphQL, and SQL.",
     tags: ["Angular", "ASP.NET Core", "GraphQL", "SQL", "Government"],
     link: "#",
+    image: "/projects/prmsc.jpeg",
     featured: false,
     category: "Public Sector",
+  },
+  {
+    id: 7,
+    title: "WASA — Water & Sanitation Agency",
+    shortTitle: "WASA",
+    subtitle: "Government operations platform for WASA",
+    description:
+      "Enterprise government-scale system for WASA handling sensitive operational data. Delivered end-to-end features with audit trails, role-based access, and robust backend services.",
+    tags: ["Angular", "ASP.NET Core", "SQL", "Government", "Enterprise"],
+    link: "#",
+    image: "/projects/wasa.jpeg",
+    featured: false,
+    category: "Public Sector",
+  },
+  {
+    id: 8,
+    title: "The 7Minute Life — Productivity App",
+    shortTitle: "The 7Minute Life",
+    subtitle: "Personal productivity and habit tracking platform",
+    description:
+      "Consumer-facing productivity platform built during early tenure at O2Geeks. Shipped scalable RESTful APIs (Flask/FastAPI) with Angular frontend for a seamless mobile-first experience.",
+    tags: ["Angular", "Flask", "FastAPI", "REST APIs", "SaaS"],
+    link: "#",
+    image: "/projects/the7minutelife.jpg",
+    featured: false,
+    category: "Consumer SaaS",
   },
 ];
 

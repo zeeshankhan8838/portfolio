@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   Briefcase,
-  Building2,
   CheckCircle2,
   MapPin,
 } from "lucide-react";
@@ -39,7 +39,6 @@ export function Experience() {
         </motion.div>
 
         <div className="relative mt-16">
-          {/* Vertical line */}
           <div className="absolute left-[17px] top-2 h-[calc(100%-1.75rem)] w-px sm:left-[21px]"
             style={{
               backgroundImage:
@@ -57,12 +56,17 @@ export function Experience() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="relative pl-14 sm:pl-[68px]"
               >
-                {/* Timeline node */}
                 <span className="absolute left-0 top-2">
                   <span className="relative flex h-9 w-9 items-center justify-center sm:h-[52px] sm:w-[52px]">
                     <span className="absolute inset-0 rounded-2xl bg-bnb/15 animate-pulse-slow" />
-                    <span className="relative grid h-9 w-9 place-items-center rounded-xl border border-bnb/50 bg-bg-secondary sm:h-[52px] sm:w-[52px] sm:rounded-2xl">
-                      <Building2 className="h-4 w-4 text-bnb sm:h-5 sm:w-5" strokeWidth={2.2} />
+                    <span className="relative h-9 w-9 overflow-hidden rounded-xl border border-bnb/50 bg-bg-secondary sm:h-[52px] sm:w-[52px] sm:rounded-2xl">
+                      <Image
+                        src={exp.logo}
+                        alt={exp.company}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 36px, 52px"
+                      />
                     </span>
                   </span>
                 </span>
@@ -115,7 +119,6 @@ export function Experience() {
             ))}
           </ol>
 
-          {/* End cap */}
           <div className="mt-8 flex items-center justify-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-bnb/25 bg-bnb/[0.06] px-5 py-2.5">
               <span className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-bnb/90">

@@ -37,14 +37,27 @@ export function Contact() {
     return Object.keys(e).length === 0;
   };
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setStatus("loading");
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body?.error || "Server returned an error");
+      }
       setStatus("success");
       setForm(INITIAL);
-    }, 1400);
+    } catch (err: any) {
+      setStatus("idle");
+      console.error(err);
+      alert(err?.message || "Failed to send message. Please try again or email directly.");
+    }
   };
 
   const update = (k: keyof FormState) =>

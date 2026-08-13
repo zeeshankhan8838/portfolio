@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import Image from "next/image";
 import {
   ArrowUpRight,
   ExternalLink,
@@ -84,74 +85,51 @@ export function Projects() {
                   i === 0 && "lg:col-span-2"
                 )}
               >
-                {/* Top banner */}
                 <div
                   className={cn(
-                    "relative w-full overflow-hidden border-b border-border-subtle",
+                    "relative w-full overflow-hidden border-b border-border-subtle bg-bg-tertiary",
                     i === 0 ? "aspect-[16/8]" : "aspect-[16/10]"
                   )}
                 >
-                  {/* Creative gradient banners */}
-                  <div
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        i === 0
-                          ? `
-                              radial-gradient(120% 100% at 0% 0%, #FCD535 0%, rgba(240,185,11,0.0) 60%),
-                              radial-gradient(100% 120% at 100% 100%, #78350F 0%, rgba(120,53,15,0) 55%),
-                              linear-gradient(135deg, #1C1917 0%, #292524 50%, #0C0A09 100%)
-                            `
-                          : i === 1
-                          ? `
-                              radial-gradient(100% 100% at 100% 0%, #F0B90B 0%, rgba(240,185,11,0) 55%),
-                              radial-gradient(80% 80% at 0% 100%, #3B82F6 0%, rgba(59,130,246,0) 60%),
-                              linear-gradient(135deg, #0B0E11 0%, #181A20 60%, #0B0E11 100%)
-                            `
-                          : `
-                              radial-gradient(100% 100% at 50% 0%, rgba(240,185,11,0.6) 0%, rgba(240,185,11,0) 60%),
-                              linear-gradient(135deg, #111827 0%, #1f2937 50%, #0b1220 100%)
-                            `,
-                    }}
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    sizes={
+                      i === 0
+                        ? "(max-width: 1024px) 100vw, 66vw"
+                        : "(max-width: 1024px) 100vw, 33vw"
+                    }
+                    priority={i < 2}
                   />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/20 to-transparent" />
                   <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:36px_36px] opacity-40 mix-blend-overlay" />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-50"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(circle at 20% 30%, rgba(255,255,255,0.18), transparent 35%)",
-                    }}
-                  />
 
-                  {/* Corner decoration */}
                   <div className="absolute left-4 top-4 flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-bnb ring-1 ring-bnb/40 backdrop-blur-sm">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-bnb ring-1 ring-bnb/40 backdrop-blur-sm">
                       <Sparkles className="h-3 w-3" />
                       Featured
                     </span>
-                    <span className="inline-flex items-center rounded-full bg-black/40 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-ink ring-1 ring-white/10 backdrop-blur-sm">
+                    <span className="inline-flex items-center rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-ink ring-1 ring-white/10 backdrop-blur-sm">
                       {p.category}
                     </span>
                   </div>
 
-                  {/* Arrow top-right */}
                   <div className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-xl bg-white/90 text-bg-secondary shadow-card transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-bnb group-hover:shadow-glow-gold sm:h-12 sm:w-12">
                     <ArrowUpRight className="h-5 w-5" strokeWidth={2.2} />
                   </div>
 
-                  {/* Bottom titles overlay */}
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 sm:pb-7">
                     <div className="flex items-end justify-between gap-4">
                       <div className="min-w-0">
-                        <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-bnb/90">
+                        <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-bnb/90 drop-shadow">
                           case study 0{i + 1}
                         </div>
                         <h3 className="mt-1.5 font-display text-2xl font-extrabold leading-tight tracking-tight text-white drop-shadow-md sm:text-3xl">
                           {p.shortTitle}
                         </h3>
-                        <p className="mt-1.5 text-sm text-white/80 sm:text-[15px]">
+                        <p className="mt-1.5 text-sm text-white/85 sm:text-[15px] drop-shadow">
                           {p.subtitle}
                         </p>
                       </div>
@@ -159,7 +137,6 @@ export function Projects() {
                   </div>
                 </div>
 
-                {/* Body */}
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <p className="text-sm leading-relaxed text-ink-tertiary sm:text-[15px]">
                     {p.description}
@@ -196,44 +173,57 @@ export function Projects() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.45, delay: i * 0.05 }}
-                  className="group card card-hover relative flex flex-col overflow-hidden p-6"
+                  className="group card card-hover relative flex flex-col overflow-hidden"
                 >
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-bnb/[0.08] blur-2xl transition-transform duration-500 group-hover:scale-150"
-                  />
-
-                  <div className="relative flex items-start justify-between gap-4">
-                    <div className="relative grid h-11 w-11 place-items-center rounded-xl border border-bnb/30 bg-bnb/10 text-bnb transition-all duration-300 group-hover:bg-bnb group-hover:text-bg-secondary group-hover:shadow-glow-gold">
-                      <FolderKanban className="h-[19px] w-[19px]" strokeWidth={2} />
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="chip text-[11px]">{p.category}</span>
-                      <ExternalLink className="h-4 w-4 text-ink-muted transition-colors group-hover:text-bnb" />
-                    </div>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border-subtle bg-bg-tertiary">
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      fill
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg-secondary/85 via-bg-secondary/10 to-transparent" />
                   </div>
 
-                  <div className="relative mt-6">
-                    <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-bnb/80">
-                      project 0{i + 4}
-                    </div>
-                    <h4 className="mt-1.5 font-display text-lg font-bold tracking-tight text-ink">
-                      {p.shortTitle}
-                    </h4>
-                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-tertiary">
-                      {p.description}
-                    </p>
-                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-bnb/[0.08] blur-2xl transition-transform duration-500 group-hover:scale-150"
+                    />
 
-                  <div className="relative mt-5 flex flex-wrap gap-1.5 border-t border-border-subtle pt-4">
-                    {p.tags.slice(0, 5).map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md border border-border bg-bg-tertiary/60 px-2 py-0.5 font-mono text-[10.5px] text-ink-secondary"
-                      >
-                        {t}
-                      </span>
-                    ))}
+                    <div className="relative flex items-start justify-between gap-4">
+                      <div className="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-bnb/30 bg-bnb/10 text-bnb transition-all duration-300 group-hover:bg-bnb group-hover:text-bg-secondary group-hover:shadow-glow-gold">
+                        <FolderKanban className="h-[19px] w-[19px]" strokeWidth={2} />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="chip text-[11px]">{p.category}</span>
+                        <ExternalLink className="h-4 w-4 text-ink-muted transition-colors group-hover:text-bnb" />
+                      </div>
+                    </div>
+
+                    <div className="relative mt-5">
+                      <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-bnb/80">
+                        project 0{i + 4}
+                      </div>
+                      <h4 className="mt-1.5 font-display text-lg font-bold tracking-tight text-ink">
+                        {p.shortTitle}
+                      </h4>
+                      <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink-tertiary">
+                        {p.description}
+                      </p>
+                    </div>
+
+                    <div className="relative mt-5 flex flex-wrap gap-1.5 border-t border-border-subtle pt-4">
+                      {p.tags.slice(0, 5).map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-md border border-border bg-bg-tertiary/60 px-2 py-0.5 font-mono text-[10.5px] text-ink-secondary"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </motion.a>
               ))}

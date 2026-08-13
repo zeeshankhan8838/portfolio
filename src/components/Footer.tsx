@@ -93,7 +93,7 @@ export function Footer() {
 
           <div className="lg:col-span-3">
             <h4 className="mb-4 font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-bnb">
-              // Contact
+              Contact
             </h4>
             <ul className="space-y-3.5 text-sm">
               <li className="flex items-start gap-3">
@@ -134,7 +134,7 @@ export function Footer() {
 
           <div className="lg:col-span-4">
             <h4 className="mb-4 font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-bnb">
-              // Sitemap
+              Sitemap
             </h4>
             <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
               {[
