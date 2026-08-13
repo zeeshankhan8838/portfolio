@@ -210,16 +210,16 @@ export const experience = [
 export const projects = [
   {
     id: 1,
-    title: "Udroid — AI Device Intelligence Platform",
-    shortTitle: "Udroid",
-    subtitle: "AI-driven device intelligence & predictive analytics",
+    title: "Halliburton Analytics Platform",
+    shortTitle: "Halliburton Analytics",
+    subtitle: "Data-intensive dashboards for global oil & gas analytics",
     description:
-      "AI-driven platform for device intelligence and predictive analytics, enabling proactive rather than reactive monitoring. Owned full-stack delivery — GenAI/FastAPI backend with React.js frontend on AWS.",
-    tags: ["GenAI", "FastAPI", "React.js", "AWS", "RAG", "LLM"],
-    link: "https://app.prod.udroid.ai",
-    image: "/projects/extreme.jpeg",
+      "Data-intensive dashboards for global oil and gas analytics, supporting faster decisions for globally distributed teams. Built with Angular, PrimeNG, Highcharts/ECharts within an Nx Monorepo.",
+    tags: ["Angular", "PrimeNG", "Highcharts", "ECharts", "Nx Monorepo", "SQL"],
+    link: "#",
+    image: "/projects/halliburton.avif",
     featured: true,
-    category: "AI Platform",
+    category: "Enterprise Analytics",
   },
   {
     id: 2,
@@ -243,32 +243,6 @@ export const projects = [
   },
   {
     id: 3,
-    title: "Halliburton Analytics Platform",
-    shortTitle: "Halliburton Analytics",
-    subtitle: "Data-intensive dashboards for global oil & gas analytics",
-    description:
-      "Data-intensive dashboards for global oil and gas analytics, supporting faster decisions for globally distributed teams. Built with Angular, PrimeNG, Highcharts/ECharts within an Nx Monorepo.",
-    tags: ["Angular", "PrimeNG", "Highcharts", "ECharts", "Nx Monorepo", "SQL"],
-    link: "#",
-    image: "/projects/halliburton.avif",
-    featured: true,
-    category: "Enterprise Analytics",
-  },
-  {
-    id: 4,
-    title: "AI-Assisted HR Automation Platform",
-    shortTitle: "HR Automation",
-    subtitle: "Agentic AI transforming HR operations",
-    description:
-      "AI-assisted HR automation platform using LangChain and MCP-powered multi-tool agents to automate previously manual HR and network-ops processes end-to-end.",
-    tags: ["LangChain", "MCP", "AI Agents", "RAG", "Next.js", "FastAPI"],
-    link: "#",
-    image: "/projects/mcl.jpg",
-    featured: false,
-    category: "AI Platform",
-  },
-  {
-    id: 5,
     title: "Projul — Real Estate Management",
     shortTitle: "Projul",
     subtitle: "Real-time property management with SignalR",
@@ -281,7 +255,20 @@ export const projects = [
     category: "Real Estate SaaS",
   },
   {
-    id: 6,
+    id: 4,
+    title: "The 7Minute Life — Productivity App",
+    shortTitle: "The 7Minute Life",
+    subtitle: "Personal productivity and habit tracking platform",
+    description:
+      "Consumer-facing productivity platform built during early tenure at O2Geeks. Shipped scalable RESTful APIs (Flask/FastAPI) with Angular frontend for a seamless mobile-first experience.",
+    tags: ["Angular", "Flask", "FastAPI", "REST APIs", "SaaS"],
+    link: "#",
+    image: "/projects/the7minutelife.jpg",
+    featured: false,
+    category: "Consumer SaaS",
+  },
+  {
+    id: 5,
     title: "PMRSC — Government Public Sector",
     shortTitle: "PMRSC",
     subtitle: "Enterprise public sector system for PMRSC",
@@ -292,6 +279,19 @@ export const projects = [
     image: "/projects/prmsc.jpeg",
     featured: false,
     category: "Public Sector",
+  },
+  {
+    id: 6,
+    title: "MCL — Management Company",
+    shortTitle: "MCL",
+    subtitle: "Enterprise management system for MCL",
+    description:
+      "Enterprise management system for MCL handling sensitive operational data. Delivered end-to-end features with audit trails, role-based access, and robust backend services.",
+    tags: ["Angular", "ASP.NET Core", "SQL", "Enterprise"],
+    link: "#",
+    image: "/projects/mcl.jpg",
+    featured: false,
+    category: "Enterprise",
   },
   {
     id: 7,
@@ -305,19 +305,6 @@ export const projects = [
     image: "/projects/wasa.jpeg",
     featured: false,
     category: "Public Sector",
-  },
-  {
-    id: 8,
-    title: "The 7Minute Life — Productivity App",
-    shortTitle: "The 7Minute Life",
-    subtitle: "Personal productivity and habit tracking platform",
-    description:
-      "Consumer-facing productivity platform built during early tenure at O2Geeks. Shipped scalable RESTful APIs (Flask/FastAPI) with Angular frontend for a seamless mobile-first experience.",
-    tags: ["Angular", "Flask", "FastAPI", "REST APIs", "SaaS"],
-    link: "#",
-    image: "/projects/the7minutelife.jpg",
-    featured: false,
-    category: "Consumer SaaS",
   },
 ];
 

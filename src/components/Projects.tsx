@@ -1,23 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+
 import Image from "next/image";
-import {
-  ArrowUpRight,
-  ExternalLink,
-  FolderKanban,
-  Sparkles,
-} from "lucide-react";
+import { ExternalLink, FolderKanban, Sparkles } from "lucide-react";
 import { projects } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
 export function Projects() {
-  const [filter, setFilter] = useState<string>("all");
-  const categories = Array.from(new Set(projects.map((p) => p.category)));
-  const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
-  const featured = filtered.filter((p) => p.featured);
-  const rest = filtered.filter((p) => !p.featured);
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
 
   return (
     <section
@@ -50,22 +42,7 @@ export function Projects() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            {["all", ...categories].map((c) => (
-              <button
-                key={c}
-                onClick={() => setFilter(c)}
-                className={cn(
-                  "relative inline-flex items-center rounded-full border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all duration-150 ease-out",
-                  filter === c
-                    ? "border-bnb bg-bnb text-bg-secondary shadow-glow-gold"
-                    : "border-border bg-bg-secondary text-ink-tertiary hover:border-bnb/45 hover:text-bnb"
-                )}
-              >
-                {c === "all" ? "All" : c}
-              </button>
-            ))}
-          </div>
+          
         </motion.div>
 
         {featured.length > 0 && (
@@ -95,7 +72,8 @@ export function Projects() {
                     src={p.image}
                     alt={p.title}
                     fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                    unoptimized
+                    className="object-contain bg-bg-tertiary transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     sizes={
                       i === 0
                         ? "(max-width: 1024px) 100vw, 66vw"
@@ -116,9 +94,7 @@ export function Projects() {
                     </span>
                   </div>
 
-                  <div className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-md bg-white/90 text-bg-secondary shadow-card transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-bnb group-hover:shadow-glow-gold sm:h-12 sm:w-12">
-                    <ArrowUpRight className="h-5 w-5" strokeWidth={2.2} />
-                  </div>
+                  
 
                   <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 sm:pb-7">
                     <div className="flex items-end justify-between gap-4">
@@ -180,7 +156,8 @@ export function Projects() {
                       src={p.image}
                       alt={p.title}
                       fill
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
+                      unoptimized
+                      className="object-contain bg-bg-tertiary transition-transform duration-500 ease-out group-hover:scale-[1.05]"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg-secondary/88 via-bg-secondary/10 to-transparent" />
