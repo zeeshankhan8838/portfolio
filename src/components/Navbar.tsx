@@ -22,7 +22,7 @@ export function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 8);
       const sections = navLinks.map((l) => document.querySelector(l.href));
       const y = window.scrollY + 160;
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -47,13 +47,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
+        "sticky top-0 z-50 w-full transition-all duration-300 ease-out",
         scrolled
-          ? "border-b border-border bg-bg/70 backdrop-blur-xl"
+          ? "border-b border-border-line bg-bg/70 backdrop-blur-xl [backdrop-filter:saturate(180%)_blur(18px)]"
           : "border-b border-transparent bg-transparent"
       )}
     >
-      <nav className="container-page flex h-16 items-center justify-between sm:h-20">
+      <nav className="container-page flex h-16 items-center justify-between sm:h-[72px]">
         {/* Logo */}
         <a
           href="#top"
@@ -64,8 +64,8 @@ export function Navbar() {
           className="group flex items-center gap-2.5"
         >
           <div className="relative">
-            <div className="absolute inset-0 animate-pulse-gold rounded-xl" />
-            <div className="relative grid h-9 w-9 place-items-center rounded-xl bg-bnb text-bg-secondary transition-transform group-hover:rotate-6 group-hover:scale-105">
+            <div className="absolute inset-0 animate-pulse-gold rounded-md" />
+            <div className="relative grid h-9 w-9 place-items-center rounded-md bg-bnb text-bg-secondary transition-transform duration-300 ease-out group-hover:rotate-6 group-hover:scale-[1.04] shadow-card">
               <Hexagon className="h-5 w-5" strokeWidth={2.5} />
             </div>
           </div>
@@ -81,7 +81,7 @@ export function Navbar() {
         </a>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-7 lg:flex">
+        <div className="hidden items-center gap-8 xl:flex">
           {navLinks.map((l) => (
             <a
               key={l.href}
@@ -98,7 +98,7 @@ export function Navbar() {
           ))}
         </div>
 
-        <div className="hidden lg:flex items-center gap-2.5">
+        <div className="hidden items-center gap-2.5 xl:flex">
           <a
             href="https://linkedin.com/in/zeeshan8838"
             target="_blank"
@@ -118,7 +118,7 @@ export function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen((v) => !v)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-bg-secondary text-bnb transition-all hover:border-bnb/50 hover:shadow-glow-gold lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-md border border-border bg-bg-secondary text-bnb transition-all duration-150 ease-out hover:border-bnb/50 hover:shadow-glow-gold xl:hidden"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -133,7 +133,7 @@ export function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
-            className="overflow-hidden border-t border-border bg-bg-secondary/95 backdrop-blur-xl lg:hidden"
+            className="overflow-hidden border-t border-border-line bg-bg-secondary/95 backdrop-blur-xl xl:hidden"
           >
             <div className="container-page flex flex-col gap-1 py-4">
               {navLinks.map((l, i) => (
@@ -148,9 +148,9 @@ export function Navbar() {
                     go(l.href);
                   }}
                   className={cn(
-                    "flex items-center justify-between rounded-xl border border-transparent px-4 py-3 text-sm font-semibold transition-colors",
+                    "flex items-center justify-between rounded-lg border border-transparent px-4 py-3 text-sm font-semibold transition-colors duration-150 ease-out",
                     active === l.href
-                      ? "border-bnb/30 bg-bnb/10 text-bnb"
+                      ? "border-bnb/30 bg-bnb/[0.08] text-bnb"
                       : "text-ink-secondary hover:border-border hover:bg-bg-tertiary hover:text-ink"
                   )}
                 >

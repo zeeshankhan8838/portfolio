@@ -25,24 +25,24 @@ export function Skills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden bg-bg-secondary/40 py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden bg-bg-secondary/35 py-20 sm:py-24 lg:py-28"
     >
-      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:52px_52px] opacity-40" />
-      <div aria-hidden className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-bnb/5 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute -right-40 bottom-20 h-96 w-96 rounded-full bg-bnb/5 blur-3xl" />
+      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-35" />
+      <div aria-hidden className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-bnb/[0.05] blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -right-40 bottom-20 h-96 w-96 rounded-full bg-bnb/[0.05] blur-3xl" />
 
       <div className="container-page relative">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="eyebrow">
             <Wrench className="h-3.5 w-3.5" />
             Technical Skills
           </span>
-          <h2 className="section-title max-w-3xl">
+          <h2 className="section-title max-w-3xl text-balance">
             A toolkit honed across{" "}
             <span className="word-gold">enterprise</span> and{" "}
             <span className="word-gold">AI</span> systems
@@ -62,13 +62,13 @@ export function Skills() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="card card-hover relative flex flex-col p-6 sm:p-7 dot-corners"
+                transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className="card card-hover card-hairline relative flex flex-col p-6 sm:p-7 corner-deco"
               >
                 <div className="flex items-center gap-4">
                   <div className="relative">
-                    <div className="absolute inset-0 rounded-2xl bg-bnb/20 blur-md opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    <div className="relative grid h-12 w-12 place-items-center rounded-2xl border border-bnb/30 bg-bnb/10 text-bnb">
+                    <div className="absolute inset-0 rounded-xl bg-bnb/18 blur-md opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100" />
+                    <div className="icon-box icon-box-gold">
                       <Icon className="h-[22px] w-[22px]" strokeWidth={2} />
                     </div>
                   </div>
@@ -106,7 +106,7 @@ export function Skills() {
                         className="h-2 w-2 rounded-full"
                         style={{
                           background: n === 2 ? "#F0B90B" : n === 1 ? "#0ECB81" : "#F6465D",
-                          boxShadow: "0 0 6px currentColor",
+                          boxShadow: "0 0 5px currentColor",
                         }}
                       />
                     ))}
@@ -124,21 +124,23 @@ export function Skills() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: skills.length * 0.06 }}
-            className="card card-hover relative flex flex-col overflow-hidden p-6 sm:p-7 sm:col-span-2 xl:col-span-1"
+            transition={{ duration: 0.5, delay: skills.length * 0.06, ease: [0.22, 1, 0.36, 1] }}
+            className="card card-hover card-hairline relative flex flex-col overflow-hidden p-6 sm:p-7 sm:col-span-2 xl:col-span-1"
           >
             <div
               aria-hidden
-              className="absolute inset-0 opacity-30"
+              className="absolute inset-0 opacity-25"
               style={{
                 backgroundImage:
                   "linear-gradient(135deg, rgba(240,185,11,0.18), rgba(240,185,11,0) 55%)",
               }}
             />
             <div className="relative flex items-center gap-4">
-              <div className="relative grid h-12 w-12 place-items-center rounded-2xl bg-ink text-bnb ring-1 ring-bnb/30">
-                <Sparkles className="h-[22px] w-[22px]" strokeWidth={2} />
-                <div className="absolute inset-0 rounded-2xl animate-pulse-gold" />
+              <div className="relative">
+                <div className="icon-box border-bnb/30 bg-ink text-bnb">
+                  <Sparkles className="h-[22px] w-[22px]" strokeWidth={2} />
+                </div>
+                <div className="absolute inset-0 rounded-xl animate-pulse-gold" />
               </div>
               <div>
                 <h3 className="font-display text-base font-bold tracking-tight text-ink sm:text-lg">
@@ -154,7 +156,7 @@ export function Skills() {
                 (t) => (
                   <span
                     key={t}
-                    className="inline-flex items-center rounded-md border border-bnb/30 bg-bnb/10 px-2.5 py-1 font-mono text-[11px] font-semibold text-bnb"
+                    className="inline-flex items-center rounded border border-bnb/30 bg-bnb/[0.10] px-2.5 py-1 font-mono text-[11px] font-semibold text-bnb"
                   >
                     <span className="mr-1.5 inline-block h-1 w-1 rounded-full bg-bnb animate-pulse" />
                     {t}
@@ -163,7 +165,7 @@ export function Skills() {
               )}
             </div>
             <div className="relative mt-auto pt-5">
-              <div className="flex items-center justify-between rounded-xl border border-bnb/20 bg-bnb/[0.06] px-3.5 py-3">
+              <div className="flex items-center justify-between rounded-lg border border-bnb/20 bg-bnb/[0.06] px-3.5 py-3 card-hairline">
                 <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-bnb/80">
                   weekly hours logged
                 </span>

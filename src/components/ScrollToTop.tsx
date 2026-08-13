@@ -24,10 +24,10 @@ export function ScrollToTop() {
           className="fixed bottom-6 right-6 z-40 group sm:bottom-8 sm:right-8"
           aria-label="Back to top"
         >
-          <span className="absolute inset-0 animate-pulse-gold rounded-2xl" />
-          <div className="relative grid h-12 w-12 place-items-center rounded-2xl border border-bnb/50 bg-bnb text-bg-secondary shadow-glow-gold transition-all duration-300 group-hover:-translate-y-1 group-hover:bg-bnb-soft">
-            <div className="absolute inset-0 rounded-2xl overflow-hidden">
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+          <span className="absolute inset-0 animate-pulse-gold rounded-md" />
+          <div className="relative grid h-12 w-12 place-items-center rounded-md border border-bnb/50 bg-bnb text-bg-secondary shadow-glow-gold transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:bg-bnb-soft">
+            <div className="absolute inset-0 rounded-md overflow-hidden">
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/[0.28] to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full" />
             </div>
             <Hexagon className="absolute h-7 w-7 opacity-10" />
             <ArrowUp className="relative h-5 w-5" strokeWidth={2.5} />

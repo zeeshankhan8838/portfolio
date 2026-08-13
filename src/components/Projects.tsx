@@ -22,17 +22,17 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden bg-bg-secondary/40 py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden bg-bg-secondary/35 py-20 sm:py-24 lg:py-28"
     >
-      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:52px_52px] opacity-40" />
-      <div aria-hidden className="pointer-events-none absolute left-1/2 top-24 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-bnb/5 blur-[120px]" />
+      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-35" />
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-24 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-bnb/[0.05] blur-[120px]" />
 
       <div className="container-page relative">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end"
         >
           <div className="max-w-2xl">
@@ -40,7 +40,7 @@ export function Projects() {
               <FolderKanban className="h-3.5 w-3.5" />
               Key Projects
             </span>
-            <h2 className="section-title">
+            <h2 className="section-title text-balance">
               Selected work that shipped to{" "}
               <span className="word-gold">real users</span>
             </h2>
@@ -56,10 +56,10 @@ export function Projects() {
                 key={c}
                 onClick={() => setFilter(c)}
                 className={cn(
-                  "relative inline-flex items-center rounded-full border px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider transition-all duration-200",
+                  "relative inline-flex items-center rounded-full border px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider transition-all duration-150 ease-out",
                   filter === c
                     ? "border-bnb bg-bnb text-bg-secondary shadow-glow-gold"
-                    : "border-border bg-bg-secondary text-ink-tertiary hover:border-bnb/50 hover:text-bnb"
+                    : "border-border bg-bg-secondary text-ink-tertiary hover:border-bnb/45 hover:text-bnb"
                 )}
               >
                 {c === "all" ? "All" : c}
@@ -81,7 +81,7 @@ export function Projects() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className={cn(
-                  "group card card-hover relative flex flex-col overflow-hidden",
+                  "group card card-hover card-hairline relative flex flex-col overflow-hidden",
                   i === 0 && "lg:col-span-2"
                 )}
               >
@@ -103,11 +103,11 @@ export function Projects() {
                     }
                     priority={i < 2}
                   />
-                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/20 to-transparent" />
-                  <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:36px_36px] opacity-40 mix-blend-overlay" />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg/92 via-bg/18 to-transparent" />
+                  <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:36px_36px] opacity-35 mix-blend-overlay" />
 
                   <div className="absolute left-4 top-4 flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-bnb ring-1 ring-bnb/40 backdrop-blur-sm">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-bnb ring-1 ring-bnb/35 backdrop-blur-sm">
                       <Sparkles className="h-3 w-3" />
                       Featured
                     </span>
@@ -116,7 +116,7 @@ export function Projects() {
                     </span>
                   </div>
 
-                  <div className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-xl bg-white/90 text-bg-secondary shadow-card transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-bnb group-hover:shadow-glow-gold sm:h-12 sm:w-12">
+                  <div className="absolute right-5 top-5 grid h-11 w-11 place-items-center rounded-md bg-white/90 text-bg-secondary shadow-card transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-bnb group-hover:shadow-glow-gold sm:h-12 sm:w-12">
                     <ArrowUpRight className="h-5 w-5" strokeWidth={2.2} />
                   </div>
 
@@ -172,8 +172,8 @@ export function Projects() {
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.45, delay: i * 0.05 }}
-                  className="group card card-hover relative flex flex-col overflow-hidden"
+                  transition={{ duration: 0.45, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  className="group card card-hover card-hairline relative flex flex-col overflow-hidden"
                 >
                   <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border-subtle bg-bg-tertiary">
                     <Image
@@ -183,22 +183,22 @@ export function Projects() {
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.05]"
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg-secondary/85 via-bg-secondary/10 to-transparent" />
+                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-bg-secondary/88 via-bg-secondary/10 to-transparent" />
                   </div>
 
                   <div className="flex flex-1 flex-col p-6">
                     <div
                       aria-hidden
-                      className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-bnb/[0.08] blur-2xl transition-transform duration-500 group-hover:scale-150"
+                      className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full bg-bnb/[0.07] blur-2xl transition-transform duration-500 ease-out group-hover:scale-150"
                     />
 
                     <div className="relative flex items-start justify-between gap-4">
-                      <div className="relative grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-bnb/30 bg-bnb/10 text-bnb transition-all duration-300 group-hover:bg-bnb group-hover:text-bg-secondary group-hover:shadow-glow-gold">
+                      <div className="relative grid h-11 w-11 shrink-0 place-items-center rounded-md icon-box-gold icon-box-gold-hover group-hover:shadow-glow-gold">
                         <FolderKanban className="h-[19px] w-[19px]" strokeWidth={2} />
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="chip text-[11px]">{p.category}</span>
-                        <ExternalLink className="h-4 w-4 text-ink-muted transition-colors group-hover:text-bnb" />
+                        <ExternalLink className="h-4 w-4 text-ink-muted transition-colors duration-150 ease-out group-hover:text-bnb" />
                       </div>
                     </div>
 
@@ -218,7 +218,7 @@ export function Projects() {
                       {p.tags.slice(0, 5).map((t) => (
                         <span
                           key={t}
-                          className="rounded-md border border-border bg-bg-tertiary/60 px-2 py-0.5 font-mono text-[10.5px] text-ink-secondary"
+                          className="rounded border border-border bg-bg-tertiary/60 px-2 py-0.5 font-mono text-[10.5px] text-ink-secondary"
                         >
                           {t}
                         </span>

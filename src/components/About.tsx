@@ -55,14 +55,14 @@ export function About() {
     <section id="about" className="relative py-20 sm:py-24 lg:py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-grid-faint [background-size:52px_52px] opacity-[0.25]"
+        className="pointer-events-none absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-[0.22]"
       />
       <div className="container-page relative">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14"
         >
           <div className="lg:col-span-5">
@@ -70,7 +70,7 @@ export function About() {
               <Sparkles className="h-3.5 w-3.5" />
               About
             </span>
-            <h2 className="section-title">
+            <h2 className="section-title text-balance">
               Senior engineer building the{" "}
               <span className="word-gold">AI + web</span> stack
             </h2>
@@ -95,7 +95,7 @@ export function About() {
               ))}
             </div>
 
-            <div className="mt-8 rounded-2xl border border-bnb/20 bg-bnb/[0.06] p-5">
+            <div className="mt-8 rounded-xl border border-bnb/20 bg-bnb/[0.06] p-5 card-hairline">
               <div className="flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-bnb" />
                 <span className="text-xs font-bold uppercase tracking-[0.16em] text-bnb">
@@ -109,7 +109,7 @@ export function About() {
                   "Halliburton · Oil & Gas Analytics",
                 ].map((x) => (
                   <li key={x} className="flex items-start gap-2.5">
-                    <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-bnb shadow-[0_0_6px_rgba(240,185,11,0.8)]" />
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-bnb shadow-[0_0_6px_rgba(240,185,11,0.7)]" />
                     <span>{x}</span>
                   </li>
                 ))}
@@ -125,17 +125,17 @@ export function About() {
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.06 }}
-                  className="group card card-hover relative overflow-hidden p-6"
+                  transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                  className="group card card-hover card-hairline relative overflow-hidden p-6"
                 >
-                  <div className="pointer-events-none absolute -right-10 -top-10 font-display text-[5.5rem] font-extrabold leading-none text-bnb/[0.07] transition-transform duration-500 group-hover:scale-110 group-hover:text-bnb/[0.12]">
+                  <div className="pointer-events-none absolute -right-10 -top-10 font-display text-[5.5rem] font-extrabold leading-none text-bnb/[0.06] transition-transform duration-500 ease-out group-hover:scale-110 group-hover:text-bnb/[0.10]">
                     {p.num}
                   </div>
                   <div className="relative">
-                    <div className="grid h-12 w-12 place-items-center rounded-2xl border border-bnb/30 bg-bnb/10 text-bnb transition-all duration-300 group-hover:bg-bnb group-hover:text-bg-secondary group-hover:shadow-glow-gold">
+                    <div className="icon-box icon-box-gold icon-box-gold-hover group-hover:shadow-glow-gold">
                       <p.icon className="h-6 w-6" strokeWidth={2} />
                     </div>
-                    <h3 className="mt-5 font-display text-[15px] font-bold leading-snug text-ink sm:text-base">
+                    <h3 className="mt-5 font-display text-[15px] font-bold leading-snug tracking-tight text-ink sm:text-base">
                       {p.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-ink-tertiary">

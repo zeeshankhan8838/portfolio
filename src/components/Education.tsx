@@ -17,22 +17,22 @@ export function Education() {
       id="education"
       className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
     >
-      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:52px_52px] opacity-[0.22]" />
-      <div aria-hidden className="pointer-events-none absolute right-0 top-10 h-80 w-80 rounded-full bg-bnb/5 blur-3xl" />
+      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-[0.20]" />
+      <div aria-hidden className="pointer-events-none absolute right-0 top-10 h-80 w-80 rounded-full bg-bnb/[0.05] blur-3xl" />
 
       <div className="container-page relative">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-2xl"
         >
           <span className="eyebrow">
             <GraduationCap className="h-3.5 w-3.5" />
             Education & Certifications
           </span>
-          <h2 className="section-title">
+          <h2 className="section-title text-balance">
             Formal foundations +{" "}
             <span className="word-gold">continuous learning</span>
           </h2>
@@ -48,19 +48,19 @@ export function Education() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5 }}
-            className="card card-hover relative overflow-hidden p-6 sm:p-8 lg:col-span-5 dot-corners gold-wrap"
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="card card-hover corner-deco gold-wrap card-hairline relative overflow-hidden p-6 sm:p-8 lg:col-span-5"
           >
             <div
               aria-hidden
-              className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-bnb/10 blur-3xl"
+              className="absolute -right-10 -top-10 h-48 w-48 rounded-full bg-bnb/[0.08] blur-3xl"
             />
 
             <div className="relative">
               <div className="flex items-start gap-4">
                 <div className="relative">
-                  <div className="absolute inset-0 rounded-2xl animate-pulse-gold opacity-60" />
-                  <div className="relative grid h-14 w-14 place-items-center rounded-2xl border border-bnb/40 bg-bnb text-bg-secondary shadow-glow-gold sm:h-16 sm:w-16">
+                  <div className="absolute inset-0 rounded-xl animate-pulse-gold opacity-55" />
+                  <div className="relative grid h-14 w-14 place-items-center rounded-xl border border-bnb/40 bg-bnb text-bg-secondary shadow-glow-gold sm:h-16 sm:w-16">
                     <BookOpen className="h-7 w-7" strokeWidth={2.2} />
                   </div>
                 </div>
@@ -90,7 +90,7 @@ export function Education() {
                   {personalInfo.languages.map((l) => (
                     <div
                       key={l.name}
-                      className="group relative flex items-center justify-between overflow-hidden rounded-xl border border-border bg-bg-tertiary/60 px-4 py-3 transition-all duration-200 hover:border-bnb/50"
+                      className="group relative flex items-center justify-between overflow-hidden rounded-lg border border-border bg-bg-tertiary/60 px-4 py-3 transition-all duration-150 ease-out hover:border-bnb/45"
                     >
                       <span className="font-semibold text-ink">{l.name}</span>
                       <span className="inline-flex items-center gap-1 rounded-full bg-bnb/10 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-bnb">
@@ -103,10 +103,10 @@ export function Education() {
 
               {/* Extras */}
               {extras.length > 0 && (
-                <div className="mt-6 rounded-xl border border-bnb/20 bg-bnb/[0.06] p-4.5">
+                <div className="mt-6 rounded-lg border border-bnb/20 bg-bnb/[0.06] p-4.5 card-hairline">
                   {extras.map((e) => (
                     <div key={e} className="flex items-start gap-3">
-                      <div className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-bnb/15 text-bnb">
+                      <div className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-md bg-bnb/15 text-bnb">
                         <PenLine className="h-4 w-4" strokeWidth={2} />
                       </div>
                       <p className="text-[13.5px] leading-relaxed text-ink-secondary sm:text-sm">
@@ -124,7 +124,7 @@ export function Education() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.08 }}
+            transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7"
           >
             <div className="mb-4 flex items-center gap-3 font-display text-[11px] font-bold uppercase tracking-[0.22em] text-ink-muted">
@@ -144,17 +144,17 @@ export function Education() {
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: i * 0.08 }}
-                    className="card card-hover group flex items-start gap-4 p-5 sm:p-6"
+                    transition={{ duration: 0.45, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                    className="card card-hover card-hairline group flex items-start gap-4 p-5 sm:p-6"
                   >
                     <div
                       className={
-                        "relative grid h-12 w-12 shrink-0 place-items-center rounded-2xl transition-all duration-300 sm:h-14 sm:w-14 " +
+                        "relative grid h-12 w-12 shrink-0 place-items-center rounded-xl border transition-all duration-200 ease-out sm:h-14 sm:w-14 " +
                         (i === 0
-                          ? "border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 group-hover:border-emerald-400/60"
+                          ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300 group-hover:border-emerald-400/55"
                           : i === 1
-                          ? "border border-bnb/40 bg-bnb/10 text-bnb group-hover:shadow-glow-gold"
-                          : "border border-sky-400/30 bg-sky-400/10 text-sky-300 group-hover:border-sky-400/60")
+                          ? "border-bnb/40 bg-bnb/10 text-bnb group-hover:shadow-glow-gold"
+                          : "border-sky-400/30 bg-sky-400/10 text-sky-300 group-hover:border-sky-400/55")
                       }
                     >
                       <Icon className="h-[22px] w-[22px] sm:h-6 sm:w-6" strokeWidth={2} />
@@ -168,7 +168,7 @@ export function Education() {
                           {c.issuer}
                         </p>
                       </div>
-                      <div className="hidden shrink-0 items-center gap-2 rounded-full border border-border bg-bg-tertiary/60 px-3 py-1.5 sm:flex">
+                      <div className="hidden shrink-0 items-center gap-2 rounded-full border border-border bg-bg-tertiary/70 px-3 py-1.5 sm:flex">
                         <span className="inline-block h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
                         <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
                           earned

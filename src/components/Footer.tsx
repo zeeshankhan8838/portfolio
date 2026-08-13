@@ -15,17 +15,17 @@ export function Footer() {
   const stack = skills.flatMap((s) => s.items).slice(0, 24);
 
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-bg-secondary/60">
+    <footer className="relative overflow-hidden border-t border-border-line bg-bg-secondary/55">
       {/* Ambient gold */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-bnb/5 blur-3xl" />
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-72 w-[60rem] -translate-x-1/2 rounded-full bg-bnb/[0.05] blur-3xl" />
 
       {/* Marquee ticker of tech stack */}
-      <div className="ticker py-3.5">
+      <div className="ticker py-3.5 border-b-0">
         <div className="marquee-track gap-10 whitespace-nowrap text-[12px] font-semibold uppercase tracking-widest text-ink-muted">
           {[...stack, ...stack, ...stack].map((s, i) => (
             <span key={i} className="flex items-center gap-10">
               <span>{s}</span>
-              <span className="inline-block h-1 w-1 rounded-full bg-bnb/60" />
+              <span className="inline-block h-1 w-1 rounded-full bg-bnb/55" />
             </span>
           ))}
         </div>
@@ -42,7 +42,7 @@ export function Footer() {
               }}
               className="flex items-center gap-3"
             >
-              <div className="relative grid h-11 w-11 place-items-center rounded-2xl bg-bnb text-bg-secondary shadow-glow-gold">
+              <div className="relative grid h-11 w-11 place-items-center rounded-md bg-bnb text-bg-secondary shadow-glow-gold">
                 <Zap className="h-6 w-6" strokeWidth={2.5} />
               </div>
               <div>
@@ -82,7 +82,7 @@ export function Footer() {
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="group relative grid h-11 w-11 place-items-center rounded-xl border border-border bg-bg-tertiary/60 text-ink-tertiary transition-all duration-300 hover:-translate-y-0.5 hover:border-bnb hover:text-bnb hover:shadow-glow-gold"
+                  className="group relative grid h-11 w-11 place-items-center rounded-md border border-border bg-bg-tertiary/60 text-ink-tertiary transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-bnb hover:text-bnb hover:shadow-glow-gold"
                   aria-label={label}
                 >
                   <Icon className="h-[18px] w-[18px]" strokeWidth={2} />
@@ -104,7 +104,7 @@ export function Footer() {
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-bnb" />
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="break-all text-ink-secondary transition-colors hover:text-bnb"
+                  className="break-all text-ink-secondary transition-colors duration-150 ease-out hover:text-bnb"
                 >
                   {personalInfo.email}
                 </a>
@@ -113,7 +113,7 @@ export function Footer() {
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-bnb" />
                 <a
                   href={`tel:${personalInfo.phone.replace(/\s/g, "")}`}
-                  className="text-ink-secondary transition-colors hover:text-bnb"
+                  className="text-ink-secondary transition-colors duration-150 ease-out hover:text-bnb"
                 >
                   {personalInfo.phone}
                 </a>
@@ -124,7 +124,7 @@ export function Footer() {
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-ink-secondary transition-colors hover:text-bnb"
+                  className="text-ink-secondary transition-colors duration-150 ease-out hover:text-bnb"
                 >
                   /in/zeeshan8838
                 </a>
@@ -148,18 +148,18 @@ export function Footer() {
                 <a
                   key={name}
                   href={href}
-                  className="group flex items-center gap-2 text-ink-secondary transition-colors hover:text-bnb"
+                  className="group flex items-center gap-2 text-ink-secondary transition-colors duration-150 ease-out hover:text-bnb"
                 >
-                  <span className="font-mono text-[11px] text-bnb/50 group-hover:text-bnb">→</span>
+                  <span className="font-mono text-[11px] text-bnb/50 transition-colors group-hover:text-bnb">→</span>
                   {name}
                 </a>
               ))}
             </div>
 
-            <div className="mt-8 rounded-2xl border border-bnb/20 bg-bnb/[0.07] p-5">
+            <div className="mt-8 rounded-xl border border-bnb/20 bg-bnb/[0.07] p-5 card-hairline">
               <div className="flex items-center gap-2">
                 <span className="relative inline-flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-70" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
                 </span>
                 <span className="text-xs font-bold uppercase tracking-wider text-success">
@@ -170,7 +170,7 @@ export function Footer() {
                 Open to full-time roles, contracts, and AI consulting.
                 <a
                   href="mailto:zeeshankhan8838@gmail.com"
-                  className="ml-1 font-semibold text-bnb hover:underline"
+                  className="ml-1 font-semibold text-bnb transition-colors hover:underline"
                 >
                   Let&apos;s talk →
                 </a>
@@ -179,7 +179,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
+        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border-line pt-6 sm:flex-row sm:items-center">
           <p className="text-xs text-ink-muted">
             © {new Date().getFullYear()} Zeeshan Khan. Crafted with{" "}
             <span className="text-bnb">♦</span> using Next.js · Tailwind · Framer Motion.

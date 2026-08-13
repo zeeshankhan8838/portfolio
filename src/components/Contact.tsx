@@ -71,10 +71,10 @@ export function Contact() {
       id="contact"
       className="relative overflow-hidden py-20 sm:py-24 lg:py-28"
     >
-      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:52px_52px] opacity-[0.25]" />
+      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-[0.22]" />
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-bnb/[0.08] blur-[140px]"
+        className="pointer-events-none absolute left-1/2 top-0 h-[480px] w-[900px] -translate-x-1/2 rounded-full bg-bnb/[0.07] blur-[140px]"
       />
 
       <div className="container-page relative">
@@ -82,14 +82,14 @@ export function Contact() {
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-2xl text-center"
         >
           <span className="eyebrow mx-auto">
             <MessageSquare className="h-3.5 w-3.5" />
             Contact
           </span>
-          <h2 className="section-title mt-4">
+          <h2 className="section-title mt-4 text-balance">
             Let&apos;s build something{" "}
             <span className="word-gold">worth shipping</span>
           </h2>
@@ -105,7 +105,7 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-4 lg:col-span-4"
           >
             <ContactCard
@@ -140,10 +140,10 @@ export function Contact() {
             />
 
             {/* Availability */}
-            <div className="card card-hover relative overflow-hidden p-5 sm:p-6">
+            <div className="card card-hover card-hairline relative overflow-hidden p-5 sm:p-6">
               <div
                 aria-hidden
-                className="absolute inset-0 opacity-50"
+                className="absolute inset-0 opacity-45"
                 style={{
                   backgroundImage:
                     "linear-gradient(135deg, rgba(240,185,11,0.18), rgba(240,185,11,0) 60%)",
@@ -152,8 +152,8 @@ export function Contact() {
               <div className="relative flex items-start gap-3.5">
                 <div className="relative mt-0.5">
                   <span className="flex h-9 w-9">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-xl bg-success opacity-40" />
-                    <span className="relative grid h-9 w-9 place-items-center rounded-xl border border-success/40 bg-success/10 text-success">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-md bg-success opacity-35" />
+                    <span className="relative grid h-9 w-9 place-items-center rounded-md border border-success/40 bg-success/10 text-success">
                       <Sparkles className="h-4 w-4" />
                     </span>
                   </span>
@@ -179,12 +179,12 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className="card card-hover relative overflow-hidden p-6 sm:p-8 lg:col-span-8 dot-corners gold-wrap"
+            transition={{ duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+            className="card card-hover corner-deco gold-wrap card-hairline relative overflow-hidden p-6 sm:p-8 lg:col-span-8"
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-bnb/[0.07] blur-3xl"
+              className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-bnb/[0.06] blur-3xl"
             />
 
             {status === "success" ? (
@@ -194,8 +194,8 @@ export function Contact() {
                 className="relative flex min-h-[400px] flex-col items-center justify-center text-center px-4 py-10 sm:px-6"
               >
                 <div className="relative">
-                  <div className="absolute inset-0 animate-pulse-gold rounded-3xl" />
-                  <div className="relative grid h-20 w-20 place-items-center rounded-3xl border border-success/40 bg-success/10 sm:h-24 sm:w-24">
+                  <div className="absolute inset-0 animate-pulse-gold rounded-2xl" />
+                  <div className="relative grid h-20 w-20 place-items-center rounded-2xl border border-success/40 bg-success/10 sm:h-24 sm:w-24">
                     <CheckCircle2 className="h-10 w-10 text-success sm:h-12 sm:w-12" strokeWidth={2} />
                   </div>
                 </div>
@@ -275,10 +275,10 @@ export function Contact() {
                       onChange={update("message")}
                       placeholder="Tell me about the role/project, scope, timeline, and anything else I should know."
                       className={cn(
-                        "block w-full min-h-[170px] resize-y rounded-2xl border bg-bg-tertiary/40 px-4 py-3.5 text-sm text-ink placeholder:text-ink-muted outline-none transition-all focus-ring",
+                        "block w-full min-h-[170px] resize-y rounded-lg border bg-bg-tertiary/40 px-4 py-3.5 text-sm text-ink placeholder:text-ink-muted outline-none transition-all duration-150 ease-out",
                         errors.message
-                          ? "border-danger/60 focus:ring-danger/15"
-                          : "border-border focus:border-bnb/70"
+                          ? "border-danger/60 focus:ring-2 focus:ring-danger/15"
+                          : "border-border focus:border-bnb/70 focus:ring-2 focus:ring-bnb/18"
                       )}
                     />
                     {errors.message && <ErrorText>{errors.message}</ErrorText>}
@@ -352,16 +352,16 @@ function ContactCard(props: {
   const Inner = (
     <div
       className={
-        "card card-hover flex items-center gap-4 p-5 sm:p-5 transition-all " +
+        "card card-hover card-hairline flex items-center gap-4 p-5 sm:p-5 transition-all duration-200 ease-out " +
         (props.accent ? "gold-wrap" : "")
       }
     >
       <div
         className={
-          "grid h-11 w-11 shrink-0 place-items-center rounded-xl border transition-all sm:h-12 sm:w-12 " +
+          "grid h-11 w-11 shrink-0 place-items-center rounded-md border transition-all duration-200 ease-out sm:h-12 sm:w-12 " +
           (props.accent
             ? "border-bnb/50 bg-bnb text-bg-secondary shadow-glow-gold"
-            : "border-border bg-bg-tertiary/60 text-bnb hover:border-bnb/60")
+            : "border-border bg-bg-tertiary/60 text-bnb hover:border-bnb/55")
         }
       >
         <props.Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5" strokeWidth={2} />
@@ -417,10 +417,10 @@ function Field(props: {
         onChange={props.onChange}
         placeholder={props.placeholder}
         className={cn(
-          "block w-full rounded-2xl border bg-bg-tertiary/40 px-4 py-3.5 text-sm text-ink placeholder:text-ink-muted outline-none transition-all focus-ring",
+          "block w-full rounded-lg border bg-bg-tertiary/40 px-4 py-3.5 text-sm text-ink placeholder:text-ink-muted outline-none transition-all duration-150 ease-out",
           props.error
-            ? "border-danger/60 focus:ring-danger/15"
-            : "border-border focus:border-bnb/70"
+            ? "border-danger/60 focus:ring-2 focus:ring-danger/15"
+            : "border-border focus:border-bnb/70 focus:ring-2 focus:ring-bnb/18"
         )}
       />
       {props.error && <ErrorText>{props.error}</ErrorText>}

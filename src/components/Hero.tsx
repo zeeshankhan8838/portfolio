@@ -29,12 +29,12 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden border-b border-border pt-6 sm:pt-10"
+      className="relative overflow-hidden border-b border-border-line pt-6 sm:pt-10"
     >
       {/* Background grid + radial gold */}
-      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:52px_52px] opacity-60" />
+      <div aria-hidden className="absolute inset-0 bg-grid-faint [background-size:56px_56px] opacity-50" />
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[520px]">
-        <div className="absolute left-1/2 top-[-120px] h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-bnb/10 blur-[120px]" />
+        <div className="absolute left-1/2 top-[-130px] h-[620px] w-[920px] -translate-x-1/2 rounded-full bg-bnb/[0.09] blur-[130px]" />
       </div>
 
       {/* Floating decorative blobs */}
@@ -43,14 +43,14 @@ export function Hero() {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, delay: 0.15 }}
-        className="pointer-events-none absolute right-[8%] top-28 hidden h-64 w-64 animate-float-slow rounded-full bg-bnb/10 blur-3xl sm:block"
+        className="pointer-events-none absolute right-[8%] top-28 hidden h-64 w-64 animate-float-slow rounded-full bg-bnb/[0.08] blur-3xl sm:block"
       />
       <motion.div
         aria-hidden
         initial={{ opacity: 0, scale: 0.85 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, delay: 0.25 }}
-        className="pointer-events-none absolute left-[6%] bottom-20 hidden h-56 w-56 animate-float-med rounded-full bg-bnb/5 blur-3xl sm:block"
+        className="pointer-events-none absolute left-[6%] bottom-20 hidden h-56 w-56 animate-float-med rounded-full bg-bnb/[0.05] blur-3xl sm:block"
       />
 
       <div className="container-page relative pt-6 sm:pt-14 lg:pt-20">
@@ -63,7 +63,7 @@ export function Hero() {
         >
           <span className="eyebrow">
             <span className="relative mr-1">
-              <span className="absolute inset-0 animate-ping rounded-full bg-bnb opacity-60" />
+              <span className="absolute inset-0 animate-ping rounded-full bg-bnb opacity-55" />
               <span className="relative inline-block" />
             </span>
             6+ Years · Available for hire
@@ -85,7 +85,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 max-w-4xl"
         >
-          <h1 className="font-display text-[2.75rem] font-extrabold leading-[1.02] tracking-tightest text-ink sm:text-6xl lg:text-[4.5rem]">
+          <h1 className="font-display text-[2.75rem] font-extrabold leading-[1.02] tracking-tightest text-ink sm:text-6xl lg:text-[4.5rem] text-balance">
             <span className="block">
               Hi, I&apos;m{" "}
               <span className="text-shimmer">{personalInfo.firstName}</span>
@@ -95,7 +95,7 @@ export function Hero() {
               I build enterprise-grade web systems &{" "}
               <span className="relative inline-block">
                 <span className="relative z-10 text-bnb">AI agents</span>
-                <span className="absolute inset-x-0 bottom-0 h-2 -skew-y-1 bg-bnb/20" />
+                <span className="absolute inset-x-0 bottom-0 h-2 -skew-y-1 bg-bnb/[0.18]" />
               </span>{" "}
               for global teams.
             </span>
@@ -126,7 +126,7 @@ export function Hero() {
             Copy email
           </button>
 
-          <div className="ml-1 flex items-center gap-2 pl-3 sm:border-l sm:border-border sm:pl-4">
+          <div className="ml-1 flex items-center gap-2 pl-3 sm:border-l sm:border-border-line sm:pl-4">
             <SocialLink Icon={Linkedin} href={personalInfo.linkedin} />
             <SocialLink Icon={Github} href={personalInfo.github} />
             <SocialLink Icon={Mail} href={`mailto:${personalInfo.email}`} />
@@ -150,7 +150,7 @@ export function Hero() {
             <CodeSnippetCard />
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {personalInfo.stats.map((s) => (
-                <div key={s.label} className="metric gold-wrap">
+                <div key={s.label} className="metric gold-wrap card-hairline">
                   <div className="metric-value">{s.value}</div>
                   <div className="metric-label">{s.label}</div>
                 </div>
@@ -177,7 +177,7 @@ export function Hero() {
                     <Sparkles className="h-3.5 w-3.5 text-bnb" />
                     {t}
                   </span>
-                  <span className="text-bnb/60">◆</span>
+                  <span className="text-bnb/55">◆</span>
                 </span>
               ))}
             </div>
@@ -194,7 +194,7 @@ function SocialLink({ Icon, href }: { Icon: any; href: string }) {
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel="noopener noreferrer"
-      className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-bg-secondary text-ink-tertiary transition-all duration-200 hover:-translate-y-0.5 hover:border-bnb/50 hover:text-bnb hover:shadow-glow-gold"
+      className="grid h-10 w-10 place-items-center rounded-md border border-border bg-bg-secondary text-ink-tertiary transition-all duration-150 ease-out hover:-translate-y-0.5 hover:border-bnb/50 hover:text-bnb hover:shadow-glow-gold"
       aria-label="social"
     >
       <Icon className="h-4.5 w-4.5" strokeWidth={2} />
@@ -213,7 +213,7 @@ function ProfileCard() {
   ];
 
   return (
-    <div className="card card-hover dot-corners gold-wrap overflow-hidden">
+    <div className="card card-hover corner-deco gold-wrap card-hairline overflow-hidden">
       {/* header */}
       <div className="term-head">
         <span className="term-dot bg-danger" />
@@ -234,8 +234,8 @@ function ProfileCard() {
         {/* Avatar row */}
         <div className="flex items-center gap-5">
           <div className="relative">
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-bnb via-bnb-soft to-bnb opacity-70 blur-sm animate-pulse-slow" />
-            <div className="relative grid h-20 w-20 place-items-center rounded-full border border-bnb/40 bg-gradient-to-br from-bg-secondary via-bg-tertiary to-bg-secondary text-3xl font-extrabold text-bnb shadow-glow-gold sm:h-24 sm:w-24">
+            <div className="absolute -inset-[1.5px] rounded-full bg-gradient-to-br from-bnb via-bnb-soft to-bnb opacity-65 blur-[1px]" />
+            <div className="relative grid h-20 w-20 place-items-center rounded-full border border-bnb/35 bg-gradient-to-br from-bg-secondary via-bg-tertiary to-bg-secondary text-3xl font-extrabold text-bnb shadow-[0_0_0_1px_rgba(240,185,11,0.18),0_0_24px_-4px_rgba(240,185,11,0.45)] sm:h-24 sm:w-24">
               ZK
             </div>
           </div>
@@ -256,11 +256,11 @@ function ProfileCard() {
         </div>
 
         {/* KV list */}
-        <div className="mt-7 space-y-2.5 border-t border-border-subtle pt-5">
+        <div className="mt-7 space-y-1 border-t border-border-subtle pt-5">
           {lines.map((l) => (
             <div
               key={l.k}
-              className="group flex items-center justify-between gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-bg-tertiary/60"
+              className="group flex items-center justify-between gap-3 rounded-md px-2 py-1.5 transition-colors duration-150 ease-out hover:bg-bg-tertiary/60"
             >
               <span className="font-mono text-[11px] uppercase tracking-widest text-ink-muted">
                 {l.k}
@@ -282,7 +282,7 @@ function ProfileCard() {
           {personalInfo.languages.map((l) => (
             <div
               key={l.name}
-              className="flex items-center justify-between rounded-xl border border-border bg-bg-tertiary/50 px-3.5 py-3"
+              className="flex items-center justify-between rounded-lg border border-border bg-bg-tertiary/50 px-3.5 py-3 transition-colors duration-150 ease-out hover:border-bnb/35"
             >
               <span className="text-sm font-semibold text-ink">{l.name}</span>
               <span className="font-mono text-[10px] uppercase tracking-wider text-bnb">
@@ -298,7 +298,7 @@ function ProfileCard() {
 
 function CodeSnippetCard() {
   return (
-    <div className="card card-hover overflow-hidden">
+    <div className="card card-hover card-hairline overflow-hidden">
       <div className="term-head">
         <span className="term-dot bg-danger" />
         <span className="term-dot bg-bnb" />
@@ -335,7 +335,7 @@ zeeshan.shipping(${s("your idea?")}).then(hireMe);`}
       </pre>
 
       {/* Mini contact strip */}
-      <div className="grid grid-cols-2 gap-px border-t border-border bg-border sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-px border-t border-border bg-border-line sm:grid-cols-4">
         {[
           { Icon: MapPin, label: "Islamabad, PK", href: null },
           { Icon: Mail, label: personalInfo.email, href: `mailto:${personalInfo.email}`, mono: true },
@@ -343,7 +343,7 @@ zeeshan.shipping(${s("your idea?")}).then(hireMe);`}
           { Icon: Linkedin, label: "/in/zeeshan8838", href: personalInfo.linkedin, mono: true },
         ].map(({ Icon, label, href, mono }) => {
           const Inner = (
-            <div className="flex items-center gap-3 bg-bg-secondary px-4 py-3.5 transition-colors hover:bg-bg-tertiary/70">
+            <div className="flex items-center gap-3 bg-bg-secondary px-4 py-3.5 transition-colors duration-150 ease-out hover:bg-bg-tertiary/70">
               <Icon className="h-4 w-4 shrink-0 text-bnb" strokeWidth={2} />
               <span className={
                 "truncate text-xs font-medium text-ink-secondary sm:text-[13px] " +
@@ -375,7 +375,7 @@ zeeshan.shipping(${s("your idea?")}).then(hireMe);`}
 function s(v: string) {
   return (
     <span className="text-success">
-      &quot;<span className="underline decoration-success/40 decoration-2 underline-offset-2">{v}</span>&quot;
+      &quot;<span className="underline decoration-success/35 decoration-[1.5px] underline-offset-2">{v}</span>&quot;
     </span>
   ) as unknown as string;
 }
